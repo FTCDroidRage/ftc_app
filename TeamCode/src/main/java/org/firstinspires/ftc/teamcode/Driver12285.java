@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 
-@TeleOp(name="Pushbot: Custom Driver", group="Pushbot")
-public class Driver extends LinearOpMode {
+@TeleOp(name="Pushbot: 12285 Driver", group="Pushbot")
+public class Driver12285 extends LinearOpMode {
 
     HardwarePushbot robot = new HardwarePushbot();
 
@@ -19,6 +19,9 @@ public class Driver extends LinearOpMode {
 
         DcMotor lift = hardwareMap.dcMotor.get("lift");
         DcMotor sweeper = hardwareMap.dcMotor.get("sweeper");
+
+        DcMotor leftWheel = hardwareMap.dcMotor.get("left wheel");
+        DcMotor rightWheel = hardwareMap.dcMotor.get("right wheel");
 
         robot.init(hardwareMap);
 
@@ -38,11 +41,14 @@ public class Driver extends LinearOpMode {
                 right /= max;
             }
 
-            robot.leftMotor.setPower(left);
-            robot.rightMotor.setPower(right);
-
             lift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             sweeper.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+            leftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            rightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+            leftWheel.setPower(left);
+            rightWheel.setPower(right);
 
             // Use dpad up and down to move the swiffer sweeper :P
             if (gamepad1.dpad_down)
