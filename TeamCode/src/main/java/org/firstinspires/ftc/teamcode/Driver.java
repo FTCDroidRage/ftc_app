@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.util.Range;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 
@@ -11,13 +11,14 @@ public class Driver extends LinearOpMode {
 
     HardwarePushbot robot = new HardwarePushbot();
 
-    private double clawOffset = 0;
-
     @Override
     public void runOpMode() throws InterruptedException {
         double left;
         double right;
         double max;
+
+        DcMotor lift = hardwareMap.dcMotor.get("lift");
+        DcMotor sweeper = hardwareMap.dcMotor.get("sweeper");
 
         robot.init(hardwareMap);
 
@@ -27,8 +28,8 @@ public class Driver extends LinearOpMode {
         waitForStart(); // Wait for the driver to press play
 
         while (opModeIsActive()) {
-            left  = -gamepad1.left_stick_y + gamepad1.right_stick_x;
-            right = -gamepad1.left_stick_y - gamepad1.right_stick_x;
+            right  = -gamepad1.left_stick_y + gamepad1.right_stick_x;
+            left = -gamepad1.left_stick_y - gamepad1.right_stick_x;
 
             max = Math.max(Math.abs(left), Math.abs(right)); // Normalize
 
@@ -40,31 +41,24 @@ public class Driver extends LinearOpMode {
             robot.leftMotor.setPower(left);
             robot.rightMotor.setPower(right);
 
-            // Use gamepad left & right Bumpers to open and close the claw
-            double CLAW_SPEED = 0.02;
+            lift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+            sweeper.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-            if (gamepad1.right_bumper)
-                clawOffset += CLAW_SPEED;
-            else if (gamepad1.left_bumper)
-                clawOffset -= CLAW_SPEED;
-
-            clawOffset = Range.clip(clawOffset, -0.5, 0.5);
-            robot.leftClaw.setPosition(HardwarePushbot.MID_SERVO + clawOffset);
-            robot.rightClaw.setPosition(HardwarePushbot.MID_SERVO - clawOffset);
-
-            // Use gamepad buttons to move arm up (Y) and down (A)
-            if (gamepad1.y)
-                robot.armMotor.setPower(HardwarePushbot.ARM_UP_POWER);
-            else if (gamepad1.a)
-                robot.armMotor.setPower(HardwarePushbot.ARM_DOWN_POWER);
+            // Use dpad up and down to move the swiffer sweeper :P
+            if (gamepad1.dpad_down)
+                lift.setPower(-1.0);
+            else if (gamepad1.dpad_up)
+                lift.setPower(1.0);
             else
-                robot.armMotor.setPower(0.0);
+                lift.setPower(0.0);
 
-            // Send telemetry message to signify robot running;
-            telemetry.addData("claw",  "Offset = %.2f", clawOffset);
-            telemetry.addData("left",  "%.2f", left);
-            telemetry.addData("right", "%.2f", right);
-            telemetry.update();
+            // Use gamepad bumpers to move arm up and down
+            if (gamepad1.left_bumper)
+                sweeper.setPower(1.0);
+            else if (gamepad1.right_bumper)
+                sweeper.setPower(-1.0);
+            else
+                sweeper.setPower(0.0);
 
             // Pause for metronome tick.  40 mS each cycle = update 25 times a second.
             robot.waitForTick(40);
