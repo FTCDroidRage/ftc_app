@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
@@ -22,18 +21,12 @@ public class Autonomous extends LinearOpMode {
         telemetry.addData("Status", "Ready to run"); // Let the driver know the robot is waiting
         telemetry.update();
 
-        DcMotor leftWheel = hardwareMap.dcMotor.get("left wheel");
-        DcMotor rightWheel = hardwareMap.dcMotor.get("right wheel");
-
-        leftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
         waitForStart(); // Wait for driver to press play
 
         // Step 1:  Drive forward for 3 seconds
 
-        leftWheel.setPower(FORWARD_SPEED);
-        rightWheel.setPower(FORWARD_SPEED);
+        robot.leftMotor.setPower(FORWARD_SPEED);
+        robot.rightMotor.setPower(FORWARD_SPEED);
         runtime.reset();
 
         while (opModeIsActive() && (runtime.seconds() < 3.0)) {
@@ -44,8 +37,8 @@ public class Autonomous extends LinearOpMode {
 
         // Step 2:  Spin right for 1.3 seconds
 
-        leftWheel.setPower(TURN_SPEED);
-        rightWheel.setPower(-TURN_SPEED);
+        robot.leftMotor.setPower(TURN_SPEED);
+        robot.rightMotor.setPower(-TURN_SPEED);
         runtime.reset();
 
         while (opModeIsActive() && (runtime.seconds() < 1.3)) {
@@ -56,8 +49,8 @@ public class Autonomous extends LinearOpMode {
 
         // Step 3:  Drive Backwards for 1 Second
 
-        leftWheel.setPower(-FORWARD_SPEED);
-        rightWheel.setPower(-FORWARD_SPEED);
+        robot.leftMotor.setPower(-FORWARD_SPEED);
+        robot.rightMotor.setPower(-FORWARD_SPEED);
         runtime.reset();
 
         while (opModeIsActive() && (runtime.seconds() < 1.0)) {
@@ -68,8 +61,8 @@ public class Autonomous extends LinearOpMode {
 
         // Step 4:  Stop and close the claw.
 
-        leftWheel.setPower(0);
-        rightWheel.setPower(0);
+        robot.leftMotor.setPower(0);
+        robot.rightMotor.setPower(0);
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
