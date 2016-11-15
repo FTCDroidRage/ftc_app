@@ -2,7 +2,10 @@ package org.firstinspires.ftc.teamcode.hardware;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.teamcode.util.Hardware;
 
 public class Hardware12285 implements Hardware {
 
@@ -10,6 +13,8 @@ public class Hardware12285 implements Hardware {
     private DcMotor rightWheel;
     private DcMotor sweeper;
     private DcMotor lift;
+
+    private OpticalDistanceSensor opticalDistanceSensor;
 
     private HardwareMap hardwareMap;
     private ElapsedTime elapsedTime = new ElapsedTime();
@@ -34,6 +39,10 @@ public class Hardware12285 implements Hardware {
         return lift;
     }
 
+    public OpticalDistanceSensor getOpticalDistanceSensor() {
+        return opticalDistanceSensor;
+    }
+
     @Override
     public void init(HardwareMap hardwareMap) {
         this.hardwareMap = hardwareMap;
@@ -43,10 +52,14 @@ public class Hardware12285 implements Hardware {
         this.sweeper = hardwareMap.dcMotor.get("sweepers");
         this.lift = hardwareMap.dcMotor.get("lift");
 
+        this.opticalDistanceSensor = hardwareMap.opticalDistanceSensor.get("ods");
+
         leftWheel.setPower(0.0);
         rightWheel.setPower(0.0);
         sweeper.setPower(0.0);
         lift.setPower(0.0);
+
+        opticalDistanceSensor.enableLed(true); // so red light won't reflect and change the picked up color
 
         leftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

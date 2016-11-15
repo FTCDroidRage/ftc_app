@@ -11,8 +11,6 @@ public class Autonomous12285 extends LinearOpMode {
     private Hardware12285 robot = new Hardware12285();
     private ElapsedTime runtime = new ElapsedTime();
 
-    private static final double FORWARD_SPEED = 0.6;
-
     @Override
     public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap);
@@ -24,8 +22,10 @@ public class Autonomous12285 extends LinearOpMode {
 
         // Step 1:  Drive forward for 3 seconds
 
-        robot.getLeftWheel().setPower(FORWARD_SPEED);
-        robot.getRightWheel().setPower(FORWARD_SPEED);
+        double forwardSpeed = 0.6;
+
+        robot.getLeftWheel().setPower(forwardSpeed);
+        robot.getRightWheel().setPower(forwardSpeed);
         runtime.reset();
 
         while (opModeIsActive() && (runtime.seconds() < 3.0)) {

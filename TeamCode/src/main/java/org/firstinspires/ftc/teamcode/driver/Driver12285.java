@@ -23,11 +23,15 @@ public class Driver12285 extends LinearOpMode {
         waitForStart(); // Wait for the driver to press play
 
         while (opModeIsActive()) {
-            left = -gamepad1.left_stick_y;
-            right  = -gamepad1.right_stick_y;
+            right = gamepad1.left_stick_y;
+            left  = -gamepad1.right_stick_y;
 
             robot.getLeftWheel().setPower(left);
             robot.getRightWheel().setPower(right);
+
+            telemetry.addData("Normal", robot.getOpticalDistanceSensor().getLightDetected());
+            telemetry.addData("Raw", robot.getOpticalDistanceSensor().getRawLightDetected());
+            telemetry.update();
 
             // Use dpad up and down to move the swiffer sweeper :P
             if (gamepad1.dpad_down)

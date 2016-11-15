@@ -1,13 +1,14 @@
-package org.firstinspires.ftc.teamcode.util;
+package org.firstinspires.ftc.teamcode.actions;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.hardware.Hardware;
+import org.firstinspires.ftc.teamcode.util.Hardware;
 import org.firstinspires.ftc.teamcode.hardware.Hardware10863;
 import org.firstinspires.ftc.teamcode.hardware.Hardware12285;
+import org.firstinspires.ftc.teamcode.util.Team;
 
-public class EncoderDrive {
+public class ActionEncoderDrive implements Action {
 
     private Team team;
     private Hardware hardware;
@@ -19,7 +20,7 @@ public class EncoderDrive {
     private double turnSpeed;
 
     // Default counts per motor rev is 1440, gear reduction is 2.0, drive speed is 0.6, and turn speed is 0.5
-    public EncoderDrive(Team team, double countsPerMotorRev, double driveGearReduction, double driveSpeed, double turnSpeed) {
+    public ActionEncoderDrive(Team team, double countsPerMotorRev, double driveGearReduction, double driveSpeed, double turnSpeed) {
         this.team = team;
         this.countsPerMotorRev = countsPerMotorRev;
         this.driveGearReduction = driveGearReduction;
@@ -88,7 +89,7 @@ public class EncoderDrive {
         return hardware;
     }
 
-    public void drive(double speed, double leftInches, double rightInches, double timeoutS, LinearOpMode opMode) throws InterruptedException {
+    public void drive(double speed, double leftInches, double rightInches, LinearOpMode opMode) throws InterruptedException {
         int newLeftTarget;
         int newRightTarget;
 
