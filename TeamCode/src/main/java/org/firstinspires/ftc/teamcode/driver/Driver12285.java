@@ -1,7 +1,9 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.driver;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+import org.firstinspires.ftc.teamcode.hardware.Hardware12285;
 
 @TeleOp(name="Custom: 12285 Driver", group="Linear Opmode")
 public class Driver12285 extends LinearOpMode {
