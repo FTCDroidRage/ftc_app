@@ -14,8 +14,6 @@ public class Driver10863 extends LinearOpMode {
 
     double clawOffset  = 0.0 ; // Servo mid position
 
-    final double clawSpeed  = 0.02 ; // Sets rate to move servo
-
     @Override
     public void runOpMode() throws InterruptedException {
         double left;
@@ -30,8 +28,8 @@ public class Driver10863 extends LinearOpMode {
         waitForStart(); // Wait for the driver to press play
 
         while (opModeIsActive()) {
-            right  = -gamepad1.left_stick_y + gamepad1.right_stick_x;
-            left = -gamepad1.left_stick_y - gamepad1.right_stick_x;
+            right  = -gamepad1.left_stick_y + gamepad1.left_stick_x;
+            left = -gamepad1.left_stick_y - gamepad1.left_stick_x;
 
             max = Math.max(Math.abs(left), Math.abs(right)); // Normalize
 
@@ -61,14 +59,18 @@ public class Driver10863 extends LinearOpMode {
                 robot.getRightIntake().setPower(0.0);
             }
 
-            // Use gamepad bumpers to move arm up and down
-            if (gamepad1.b) {
-                clawOffset += clawSpeed;
-            } else if (gamepad1.x) {
-                clawOffset -= clawSpeed;
+            if (gamepad1.b && clawOffset <= 1.0 && clawOffset >= 0.0) {
+                clawOffset++;
+            } else if (gamepad1.b && clawOffset == 1.0) {
+                clawOffset = 1.0;
+            } else {
+                if (clawOffset > 0.0) {
+                    clawOffset--;
+                } else {
+                    clawOffset = 0.0;
+                }
             }
 
-            // Move servo in channel 1 to new position
             clawOffset = Range.clip(clawOffset, -0.5, 0.5);
             robot.getArm().getController().setServoPosition(1, clawOffset);
 
