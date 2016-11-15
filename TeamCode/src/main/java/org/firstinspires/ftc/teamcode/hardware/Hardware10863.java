@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-public class Hardware10863 {
+public class Hardware10863 implements Hardware {
 
     private DcMotor leftWheel;
     private DcMotor rightWheel;
@@ -41,6 +41,7 @@ public class Hardware10863 {
         return arm;
     }
 
+    @Override
     public void init(HardwareMap hardwareMap) {
         this.hardwareMap = hardwareMap;
 
@@ -62,6 +63,7 @@ public class Hardware10863 {
         rightIntake.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
+    @Override
     public void waitForTick(long milliseconds) throws InterruptedException {
         long  remaining = milliseconds - (long) elapsedTime.milliseconds();
 
@@ -69,6 +71,11 @@ public class Hardware10863 {
             Thread.sleep(remaining);
 
         elapsedTime.reset();
+    }
+
+    @Override
+    public HardwareMap getHardwareMap() {
+        return hardwareMap;
     }
 
 }
