@@ -1,0 +1,19 @@
+package org.firstinspires.ftc.teamcode.autonomous.wip;
+
+public enum AutonomousPhase {
+
+    DRIVING_FROM_START,
+    TURNING_TO_BEACON1,
+    DRIVING_TO_BEACON1,
+    BACKING_UP1,
+    DRIVING_FROM_BEACON1,
+    TURNING_TO_BEACON2,
+    DRIVING_TO_BEACON2,
+    BACKING_UP2,
+    TURNING_TO_CENTER,
+    DRIVING_TO_CENTER,
+    TURNING_TO_CORNER,
+    DRIVING_TO_CORNER,
+    COMPLETED
+
+}

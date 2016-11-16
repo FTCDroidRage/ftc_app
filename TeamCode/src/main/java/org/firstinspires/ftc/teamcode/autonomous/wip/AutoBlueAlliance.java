@@ -12,6 +12,8 @@ public class AutoBlueAlliance extends LinearOpMode {
     private Hardware12285 robot = new Hardware12285();
     private ElapsedTime elapsedTime = new ElapsedTime();
 
+    private AutonomousPhase phase;
+
     private double countsPerMotorRev = 1440;
     private double driveGearReduction = 2.0;
     private double wheelDiameterInches = 2.5625;
@@ -41,15 +43,84 @@ public class AutoBlueAlliance extends LinearOpMode {
 
         waitForStart();
 
+        this.phase = AutonomousPhase.DRIVING_FROM_START;
+
         while (opModeIsActive()) {
-            if (robot.getOpticalDistanceSensor().getLightDetected() >= whiteTapeLightNormal
-                    && robot.getOpticalDistanceSensor().getRawLightDetected() >= whiteTapeLightRaw) {
+            switch (phase) {
+                case DRIVING_FROM_START:
+                    double inchesToBeacon = 0.0; // TODO: Measure field
 
-            } else {
-                double inchesToBeacon = 0.0;
+                    driveWithEncoders(1.0, inchesToBeacon, inchesToBeacon, 5);
+                    this.phase = AutonomousPhase.TURNING_TO_BEACON1;
 
-                driveWithEncoders(0.6, inchesToBeacon, inchesToBeacon, 5);
-                // actionEncoderDrive.drive(0.6, inchesToBeacon, inchesToBeacon, this);
+                    break;
+                case TURNING_TO_BEACON1:
+                    if (robot.getOpticalDistanceSensor1().getLightDetected() >= whiteTapeLightNormal
+                            && robot.getOpticalDistanceSensor1().getRawLightDetected() >= whiteTapeLightRaw
+                            || robot.getOpticalDistanceSensor2().getLightDetected() >= whiteTapeLightNormal
+                            && robot.getOpticalDistanceSensor2().getRawLightDetected() >= whiteTapeLightRaw) {
+                        turnWithEncoders(0.5, 45.0, 1.0);
+                    }
+                    this.phase = AutonomousPhase.DRIVING_TO_BEACON1;
+
+                    break;
+                case DRIVING_TO_BEACON1:
+                    driveWithEncoders(1.0, 12.0, 12.0, 5.0);
+                    this.phase = AutonomousPhase.BACKING_UP1;
+
+                    break;
+                case BACKING_UP1:
+                    driveWithEncoders(1.0, -12.0, -12.0, 5.0);
+                    turnWithEncoders(0.5, -90.0, 1.0);
+                    this.phase = AutonomousPhase.DRIVING_FROM_BEACON1;
+
+                    break;
+                case DRIVING_FROM_BEACON1:
+                    driveWithEncoders(1.0, 24.0, 24.0, 5.0);
+                    this.phase = AutonomousPhase.TURNING_TO_BEACON2;
+
+                    break;
+                case TURNING_TO_BEACON2:
+                    if (robot.getOpticalDistanceSensor1().getLightDetected() >= whiteTapeLightNormal
+                            && robot.getOpticalDistanceSensor1().getRawLightDetected() >= whiteTapeLightRaw
+                            || robot.getOpticalDistanceSensor2().getLightDetected() >= whiteTapeLightNormal
+                            && robot.getOpticalDistanceSensor2().getRawLightDetected() >= whiteTapeLightRaw) {
+                        turnWithEncoders(0.5, 45.0, 1.0);
+                    }
+                    this.phase = AutonomousPhase.DRIVING_TO_BEACON2;
+
+                    break;
+                case DRIVING_TO_BEACON2:
+                    driveWithEncoders(1.0, 12.0, 12.0, 5.0);
+                    this.phase = AutonomousPhase.BACKING_UP2;
+
+                    break;
+                case BACKING_UP2:
+                    driveWithEncoders(1.0, -12.0, -12.0, 5.0);
+                    this.phase = AutonomousPhase.TURNING_TO_CENTER;
+
+                    break;
+                case TURNING_TO_CENTER:
+                    turnWithEncoders(0.5, 135.0, 1.0);
+                    this.phase = AutonomousPhase.DRIVING_TO_CENTER;
+
+                    break;
+                case DRIVING_TO_CENTER:
+                    driveWithEncoders(1.0, 36.0, 36.0, 5.0);
+                    this.phase = AutonomousPhase.TURNING_TO_CORNER;
+
+                    break;
+                case TURNING_TO_CORNER:
+                    turnWithEncoders(0.5, -90.0, 1.0);
+                    this.phase = AutonomousPhase.DRIVING_TO_CORNER;
+
+                    break;
+                case DRIVING_TO_CORNER:
+                    driveWithEncoders(1.0, 36.0, 36.0, 5.0);
+
+                    break;
+                case COMPLETED:
+                    break;
             }
         }
     }
@@ -128,21 +199,6 @@ public class AutoBlueAlliance extends LinearOpMode {
 
             robot.getLeftWheel().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.getRightWheel().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        }
-    }
-
-    public void detectWhiteTape(double speed, double timeout) {
-        elapsedTime.reset();
-
-        while (opModeIsActive() && elapsedTime.seconds() < timeout) {
-            telemetry.addData("Normal", robot.getOpticalDistanceSensor().getLightDetected());
-            telemetry.addData("Raw", robot.getOpticalDistanceSensor().getRawLightDetected());
-            telemetry.update();
-
-            if (robot.getOpticalDistanceSensor().getLightDetected() >= whiteTapeLightNormal
-                    && robot.getOpticalDistanceSensor().getRawLightDetected() >= whiteTapeLightRaw) {
-                // TODO: Configure two ODS sensors on bottom of robot to position the robot straddling over the tape
-            }
         }
     }
 

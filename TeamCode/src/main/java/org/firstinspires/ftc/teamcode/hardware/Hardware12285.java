@@ -14,7 +14,8 @@ public class Hardware12285 implements Hardware {
     private DcMotor sweeper;
     private DcMotor lift;
 
-    private OpticalDistanceSensor opticalDistanceSensor;
+    private OpticalDistanceSensor opticalDistanceSensor1;
+    private OpticalDistanceSensor opticalDistanceSensor2;
 
     private HardwareMap hardwareMap;
     private ElapsedTime elapsedTime = new ElapsedTime();
@@ -39,8 +40,12 @@ public class Hardware12285 implements Hardware {
         return lift;
     }
 
-    public OpticalDistanceSensor getOpticalDistanceSensor() {
-        return opticalDistanceSensor;
+    public OpticalDistanceSensor getOpticalDistanceSensor1() {
+        return opticalDistanceSensor1;
+    }
+
+    public OpticalDistanceSensor getOpticalDistanceSensor2() {
+        return opticalDistanceSensor2;
     }
 
     @Override
@@ -52,14 +57,16 @@ public class Hardware12285 implements Hardware {
         this.sweeper = hardwareMap.dcMotor.get("sweepers");
         this.lift = hardwareMap.dcMotor.get("lift");
 
-        this.opticalDistanceSensor = hardwareMap.opticalDistanceSensor.get("ods");
+        this.opticalDistanceSensor1 = hardwareMap.opticalDistanceSensor.get("ods1");
+        this.opticalDistanceSensor2 = hardwareMap.opticalDistanceSensor.get("ods2");
 
         leftWheel.setPower(0.0);
         rightWheel.setPower(0.0);
         sweeper.setPower(0.0);
         lift.setPower(0.0);
 
-        opticalDistanceSensor.enableLed(true); // so red light won't reflect and change the picked up color
+        opticalDistanceSensor1.enableLed(false);
+        opticalDistanceSensor2.enableLed(false);
 
         leftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
