@@ -12,15 +12,10 @@ public class AutoBlueAlliance extends LinearOpMode {
     private Hardware12285 robot = new Hardware12285();
     private ElapsedTime elapsedTime = new ElapsedTime();
 
-    private AutonomousPhase phase;
-
     private double countsPerMotorRev = 1440;
     private double driveGearReduction = 2.0;
     private double wheelDiameterInches = 2.5625;
     private double countsPerInch = (countsPerMotorRev * driveGearReduction) / (wheelDiameterInches * 3.1415);
-
-    private double whiteTapeLightNormal = 0.6842619745845553;
-    private double whiteTapeLightRaw = 3.421309872922776;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -43,7 +38,14 @@ public class AutoBlueAlliance extends LinearOpMode {
 
         waitForStart();
 
-        this.phase = AutonomousPhase.DRIVING_FROM_START;
+        double whiteTapeLightRaw = 3.421309872922776;
+        double whiteTapeLightNormal = 0.6842619745845553;
+
+        AutonomousPhase phase = AutonomousPhase.DRIVING_FROM_START;
+
+
+        telemetry.addData("Status", "Driving");
+        telemetry.update();
 
         while (opModeIsActive()) {
             switch (phase) {
@@ -51,7 +53,7 @@ public class AutoBlueAlliance extends LinearOpMode {
                     double inchesToBeacon = 0.0; // TODO: Measure field
 
                     driveWithEncoders(1.0, inchesToBeacon, inchesToBeacon, 5);
-                    this.phase = AutonomousPhase.TURNING_TO_BEACON1;
+                    phase = AutonomousPhase.TURNING_TO_BEACON1;
 
                     break;
                 case TURNING_TO_BEACON1:
@@ -61,23 +63,23 @@ public class AutoBlueAlliance extends LinearOpMode {
                             && robot.getOpticalDistanceSensor2().getRawLightDetected() >= whiteTapeLightRaw) {
                         turnWithEncoders(0.5, 45.0, 1.0);
                     }
-                    this.phase = AutonomousPhase.DRIVING_TO_BEACON1;
+                    phase = AutonomousPhase.DRIVING_TO_BEACON1;
 
                     break;
                 case DRIVING_TO_BEACON1:
                     driveWithEncoders(1.0, 12.0, 12.0, 5.0);
-                    this.phase = AutonomousPhase.BACKING_UP1;
+                    phase = AutonomousPhase.BACKING_UP1;
 
                     break;
                 case BACKING_UP1:
                     driveWithEncoders(1.0, -12.0, -12.0, 5.0);
                     turnWithEncoders(0.5, -90.0, 1.0);
-                    this.phase = AutonomousPhase.DRIVING_FROM_BEACON1;
+                    phase = AutonomousPhase.DRIVING_FROM_BEACON1;
 
                     break;
                 case DRIVING_FROM_BEACON1:
                     driveWithEncoders(1.0, 24.0, 24.0, 5.0);
-                    this.phase = AutonomousPhase.TURNING_TO_BEACON2;
+                    phase = AutonomousPhase.TURNING_TO_BEACON2;
 
                     break;
                 case TURNING_TO_BEACON2:
@@ -87,39 +89,42 @@ public class AutoBlueAlliance extends LinearOpMode {
                             && robot.getOpticalDistanceSensor2().getRawLightDetected() >= whiteTapeLightRaw) {
                         turnWithEncoders(0.5, 45.0, 1.0);
                     }
-                    this.phase = AutonomousPhase.DRIVING_TO_BEACON2;
+                    phase = AutonomousPhase.DRIVING_TO_BEACON2;
 
                     break;
                 case DRIVING_TO_BEACON2:
                     driveWithEncoders(1.0, 12.0, 12.0, 5.0);
-                    this.phase = AutonomousPhase.BACKING_UP2;
+                    phase = AutonomousPhase.BACKING_UP2;
 
                     break;
                 case BACKING_UP2:
                     driveWithEncoders(1.0, -12.0, -12.0, 5.0);
-                    this.phase = AutonomousPhase.TURNING_TO_CENTER;
+                    phase = AutonomousPhase.TURNING_TO_CENTER;
 
                     break;
                 case TURNING_TO_CENTER:
                     turnWithEncoders(0.5, 135.0, 1.0);
-                    this.phase = AutonomousPhase.DRIVING_TO_CENTER;
+                    phase = AutonomousPhase.DRIVING_TO_CENTER;
 
                     break;
                 case DRIVING_TO_CENTER:
                     driveWithEncoders(1.0, 36.0, 36.0, 5.0);
-                    this.phase = AutonomousPhase.TURNING_TO_CORNER;
+                    phase = AutonomousPhase.TURNING_TO_CORNER;
 
                     break;
                 case TURNING_TO_CORNER:
                     turnWithEncoders(0.5, -90.0, 1.0);
-                    this.phase = AutonomousPhase.DRIVING_TO_CORNER;
+                    phase = AutonomousPhase.DRIVING_TO_CORNER;
 
                     break;
                 case DRIVING_TO_CORNER:
                     driveWithEncoders(1.0, 36.0, 36.0, 5.0);
+                    phase = AutonomousPhase.COMPLETED;
 
                     break;
                 case COMPLETED:
+                    telemetry.addData("Status", "Complete");
+                    telemetry.update();
                     break;
             }
         }
