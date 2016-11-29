@@ -50,19 +50,19 @@ public class AutoBlueAlliance extends LinearOpMode {
         while (opModeIsActive()) {
             switch (phase) {
                 case DRIVING_FROM_START:
-                    double inchesToBeacon = 0.0; // TODO: Measure field
+                    double inchesToBeacon = 5.0; // TODO: Measure field
 
                     driveWithEncoders(1.0, inchesToBeacon, inchesToBeacon, 5);
                     phase = AutonomousPhase.TURNING_TO_BEACON1;
 
                     break;
                 case TURNING_TO_BEACON1:
-                    if (robot.getOpticalDistanceSensor1().getLightDetected() >= whiteTapeLightNormal
+                    /*if (robot.getOpticalDistanceSensor1().getLightDetected() >= whiteTapeLightNormal
                             && robot.getOpticalDistanceSensor1().getRawLightDetected() >= whiteTapeLightRaw
                             || robot.getOpticalDistanceSensor2().getLightDetected() >= whiteTapeLightNormal
-                            && robot.getOpticalDistanceSensor2().getRawLightDetected() >= whiteTapeLightRaw) {
+                            && robot.getOpticalDistanceSensor2().getRawLightDetected() >= whiteTapeLightRaw) {*/
                         turnWithEncoders(0.5, 45.0, 1.0);
-                    }
+                    //}
                     phase = AutonomousPhase.DRIVING_TO_BEACON1;
 
                     break;
@@ -83,12 +83,12 @@ public class AutoBlueAlliance extends LinearOpMode {
 
                     break;
                 case TURNING_TO_BEACON2:
-                    if (robot.getOpticalDistanceSensor1().getLightDetected() >= whiteTapeLightNormal
+                    /*if (robot.getOpticalDistanceSensor1().getLightDetected() >= whiteTapeLightNormal
                             && robot.getOpticalDistanceSensor1().getRawLightDetected() >= whiteTapeLightRaw
                             || robot.getOpticalDistanceSensor2().getLightDetected() >= whiteTapeLightNormal
-                            && robot.getOpticalDistanceSensor2().getRawLightDetected() >= whiteTapeLightRaw) {
+                            && robot.getOpticalDistanceSensor2().getRawLightDetected() >= whiteTapeLightRaw) {*/
                         turnWithEncoders(0.5, 45.0, 1.0);
-                    }
+                    //}
                     phase = AutonomousPhase.DRIVING_TO_BEACON2;
 
                     break;
@@ -136,7 +136,7 @@ public class AutoBlueAlliance extends LinearOpMode {
 
         if (opModeIsActive()) {
             newLeftTarget = robot.getLeftWheel().getCurrentPosition() + (int)(inchesLeft * countsPerInch);
-            newRightTarget = robot.getRightWheel().getCurrentPosition() + (int)(inchesRight * countsPerInch);
+            newRightTarget = robot.getRightWheel().getCurrentPosition() + (int)(-inchesRight * countsPerInch);
 
             robot.getLeftWheel().setTargetPosition(newLeftTarget);
             robot.getRightWheel().setTargetPosition(newRightTarget);
