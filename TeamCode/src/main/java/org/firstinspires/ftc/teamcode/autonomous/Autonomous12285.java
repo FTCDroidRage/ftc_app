@@ -11,6 +11,8 @@ public class Autonomous12285 extends LinearOpMode {
     private Hardware12285 robot = new Hardware12285();
     private ElapsedTime runtime = new ElapsedTime();
 
+    public static int i = 1;
+
     @Override
     public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap);

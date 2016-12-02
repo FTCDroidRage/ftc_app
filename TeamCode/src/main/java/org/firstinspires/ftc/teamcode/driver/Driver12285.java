@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.driver;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.hardware.Hardware12285;
 
@@ -23,8 +24,11 @@ public class Driver12285 extends LinearOpMode {
         waitForStart(); // Wait for the driver to press play
 
         while (opModeIsActive()) {
-            right = gamepad1.left_stick_y;
-            left  = -gamepad1.right_stick_y;
+            left = -gamepad1.left_stick_y;
+            right  = -gamepad1.right_stick_y;
+
+            left = Range.clip(left, -1, 1);
+            right = Range.clip(right, -1, 1);
 
             robot.getLeftWheel().setPower(left);
             robot.getRightWheel().setPower(right);
@@ -38,12 +42,13 @@ public class Driver12285 extends LinearOpMode {
                 robot.getLift().setPower(0.0);
 
             // Use gamepad bumpers to move arm up and down
-            if (gamepad1.left_bumper)
+            /*if (gamepad1.left_bumper)
                 robot.getSweeper().setPower(1.0);
             else if (gamepad1.right_bumper)
                 robot.getSweeper().setPower(-1.0);
             else
                 robot.getSweeper().setPower(0.0);
+                */
 
             robot.waitForTick(40);
         }

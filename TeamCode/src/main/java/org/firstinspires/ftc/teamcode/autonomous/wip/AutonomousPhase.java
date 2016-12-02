@@ -19,6 +19,7 @@ public enum AutonomousPhase {
     DRIVING_TO_CENTER("Driving to the center vortex..."),
     TURNING_TO_CORNER("Turning towards the corner vortex..."),
     DRIVING_TO_CORNER("Driving to the corner vortex..."),
+    GRABBING_CORNER("Grabbing on to the corner vortex..."),
 
     // Simple driving
     DRIVING_FORWARD("Driving forward..."),
