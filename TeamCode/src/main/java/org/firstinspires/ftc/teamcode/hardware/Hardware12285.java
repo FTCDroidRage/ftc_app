@@ -61,25 +61,16 @@ public class Hardware12285 implements Hardware {
 
         this.leftWheel = hardwareMap.dcMotor.get("left wheel");
         this.rightWheel = hardwareMap.dcMotor.get("right wheel");
-        // this.sweeper = hardwareMap.dcMotor.get("sweepers");
         this.lift = hardwareMap.dcMotor.get("lift");
 
         this.grabber = hardwareMap.servo.get("grabber");
 
-        // this.opticalDistanceSensor1 = hardwareMap.opticalDistanceSensor.get("ods1");
-        // this.opticalDistanceSensor2 = hardwareMap.opticalDistanceSensor.get("ods2");
-
         leftWheel.setPower(0.0);
         rightWheel.setPower(0.0);
-        // sweeper.setPower(0.0);
         lift.setPower(0.0);
-
-        // opticalDistanceSensor1.enableLed(false);
-        // opticalDistanceSensor2.enableLed(false);
 
         leftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        // sweeper.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         lift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 

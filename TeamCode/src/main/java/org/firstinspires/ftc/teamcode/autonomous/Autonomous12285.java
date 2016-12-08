@@ -11,18 +11,14 @@ public class Autonomous12285 extends LinearOpMode {
     private Hardware12285 robot = new Hardware12285();
     private ElapsedTime runtime = new ElapsedTime();
 
-    public static int i = 1;
-
     @Override
     public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap);
 
-        telemetry.addData("Status", "Ready to run"); // Let the driver know the robot is waiting
+        telemetry.addData("Status", "Ready to run");
         telemetry.update();
 
-        waitForStart(); // Wait for driver to press play
-
-        // Step 1:  Drive forward for 3 seconds
+        waitForStart();
 
         double forwardSpeed = 0.6;
 
@@ -30,13 +26,11 @@ public class Autonomous12285 extends LinearOpMode {
         robot.getRightWheel().setPower(forwardSpeed);
         runtime.reset();
 
-        while (opModeIsActive() && (runtime.seconds() < 3.0)) {
+        while (opModeIsActive() && (runtime.seconds() < 4.5)) {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
             idle();
         }
-
-        // Step 2:  Stop and close the claw.
 
         robot.getLeftWheel().setPower(0);
         robot.getRightWheel().setPower(0);

@@ -3,12 +3,26 @@ package org.firstinspires.ftc.teamcode.autonomous.wip;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.RobotLog;
 
+import org.firstinspires.ftc.robotcore.external.ClassFactory;
+import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
+import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 import org.firstinspires.ftc.teamcode.autonomous.Autonomous12285;
 import org.firstinspires.ftc.teamcode.hardware.Hardware10863;
 import org.firstinspires.ftc.teamcode.hardware.Hardware12285;
 import org.firstinspires.ftc.teamcode.hardware.HardwareNull;
 import org.firstinspires.ftc.teamcode.util.Configuration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="[ALPHA] Global Autonomous", group="Linear Opmode")
 public class AutoGlobal extends LinearOpMode {
@@ -28,6 +42,7 @@ public class AutoGlobal extends LinearOpMode {
     private AutonomousPhase phase;
 
     private boolean configured;
+    private boolean stonesAndChipsActivated = false;
 
     private double countsPerMotorRev = 1440;
     private double driveGearReduction = 2.0;
@@ -142,148 +157,7 @@ public class AutoGlobal extends LinearOpMode {
         }
 
         while (opModeIsActive()) {
-            if (team == Configuration.Team.TEAM_12285) {
-                if (robot == null) return;
-                if (alliance == Configuration.Alliance.BLUE) {
-                    if (beacon1Side != null && beacon2Side != null &&
-                            beacon1Side != Configuration.Beacon.NULL && beacon2Side != Configuration.Beacon.NULL) {
-                        switch (phase) {
-                            case DRIVING_FROM_START:
-                                robot.getGrabber().getController().setServoPosition(1, 1.0);
-                                driveWithEncoders(1.0, 80.0, 80.0, 5.0);
-                                phase = AutonomousPhase.TURNING_TO_BEACON1;
-
-                                break;
-                            case TURNING_TO_BEACON1:
-                                turnWithEncoders(0.5, 15.0, 1.0);
-                                phase = AutonomousPhase.DRIVING_TO_BEACON1;
-
-                                break;
-                            case DRIVING_TO_BEACON1:
-                                if (beacon1Side == Configuration.Beacon.LEFT) {
-                                    driveWithEncoders(1.0, 1.0, 1.0, 1.0);
-                                    turnWithEncoders(0.5, -10.0, 1.0);
-                                    driveWithEncoders(-1.0, -1.0, -1.0, 1.0);
-                                    turnWithEncoders(0.5, 10.0, 1.0);
-                                } else {
-                                    driveWithEncoders(1.0, 1.0, 1.0, 1.0);
-                                    turnWithEncoders(0.5, 10.0, 1.0);
-                                    driveWithEncoders(-1.0, -1.0, -1.0, 1.0);
-                                    turnWithEncoders(0.5, -10.0, 1.0);
-                                }
-                                phase = AutonomousPhase.BACKING_UP1;
-
-                                break;
-                            case BACKING_UP1:
-                                driveWithEncoders(-1.0, -12.0, -12.0, 3.0);
-                                phase = AutonomousPhase.TURNING_TO_BEACON1;
-
-                                break;
-                            case TURNING_FROM_BEACON1:
-                                turnWithEncoders(0.5, -90.0, 1.0);
-                                phase = AutonomousPhase.DRIVING_FROM_BEACON1;
-
-                                break;
-                            case DRIVING_FROM_BEACON1:
-                                driveWithEncoders(1.0, 45.0, 45.0, 5.0);
-                                phase = AutonomousPhase.TURNING_TO_BEACON2;
-
-                                break;
-                            case TURNING_TO_BEACON2:
-                                turnWithEncoders(0.5, 45.0, 1.0);
-                                phase = AutonomousPhase.DRIVING_TO_BEACON2;
-
-                                break;
-                            case DRIVING_TO_BEACON2:
-                                driveWithEncoders(1.0, 11.0, 11.0, 3.0);
-                                if (beacon2Side == Configuration.Beacon.LEFT) {
-                                    driveWithEncoders(1.0, 1.0, 1.0, 1.0);
-                                    turnWithEncoders(0.5, -10.0, 1.0);
-                                    driveWithEncoders(-1.0, -1.0, -1.0, 1.0);
-                                    turnWithEncoders(0.5, 10.0, 1.0);
-                                } else {
-                                    driveWithEncoders(1.0, 1.0, 1.0, 1.0);
-                                    turnWithEncoders(0.5, 10.0, 1.0);
-                                    driveWithEncoders(-1.0, -1.0, -1.0, 1.0);
-                                    turnWithEncoders(0.5, -10.0, 1.0);
-                                }
-                                phase = AutonomousPhase.BACKING_UP2;
-
-                                break;
-                            case BACKING_UP2:
-                                driveWithEncoders(-1.0, -12.0, -12.0, 3.0);
-                                phase = AutonomousPhase.TURNING_TO_CENTER;
-
-                                break;
-                            case TURNING_TO_CENTER:
-                                turnWithEncoders(0.5, 90.0, 1.0);
-                                phase = AutonomousPhase.DRIVING_TO_CENTER;
-
-                                break;
-                            case DRIVING_TO_CENTER:
-                                driveWithEncoders(1.0, 70.0, 70.0, 5.0);
-                                phase = AutonomousPhase.TURNING_TO_CORNER;
-
-                                break;
-                            case TURNING_TO_CORNER:
-                                turnWithEncoders(0.5, -90.0, 1.0);
-                                phase = AutonomousPhase.DRIVING_TO_CORNER;
-
-                                break;
-                            case DRIVING_TO_CORNER:
-                                driveWithEncoders(1.0, 80.0, 80.0, 5.0);
-                                phase = AutonomousPhase.GRABBING_CORNER;
-
-                                break;
-                            case GRABBING_CORNER:
-                                robot.getGrabber().getController().setServoPosition(1, 0.0);
-                                phase = AutonomousPhase.COMPLETED;
-
-                                break;
-                            case COMPLETED:
-                                telemetry.addData("Status", "Complete");
-                                telemetry.update();
-                                break;
-                        }
-                    }
-                }
-            } else if (config.getTeam() == Configuration.Team.TEAM_10863) {
-                robot.getLeftWheel().setPower(0.6);
-                robot.getRightWheel().setPower(0.6);
-                elapsedTime.reset();
-
-                while (elapsedTime.seconds() < 3.0) {
-                    telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", elapsedTime.seconds());
-                    telemetry.update();
-                    idle();
-                }
-
-                robot.getLeftWheel().setPower(0);
-                robot.getRightWheel().setPower(0);
-
-                telemetry.addData("Path", "Complete");
-                telemetry.update();
-                sleep(1000);
-                idle();
-            } else {
-                robot.getLeftWheel().setPower(0.6);
-                robot.getRightWheel().setPower(0.6);
-                elapsedTime.reset();
-
-                while (elapsedTime.seconds() < 3.0) {
-                    telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", elapsedTime.seconds());
-                    telemetry.update();
-                    idle();
-                }
-
-                robot.getLeftWheel().setPower(0);
-                robot.getRightWheel().setPower(0);
-
-                telemetry.addData("Path", "Complete");
-                telemetry.update();
-                sleep(1000);
-                idle();
-            }
+            runAutonomous(config);
         }
     }
 
@@ -364,6 +238,229 @@ public class AutoGlobal extends LinearOpMode {
             robot.getLeftWheel().setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             robot.getRightWheel().setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
+    }
+
+    private void runAutonomous(Configuration config) throws InterruptedException {
+        if (team == Configuration.Team.TEAM_12285) {
+            if (robot == null) return;
+            if (alliance == Configuration.Alliance.BLUE) {
+                if (beacon1Side != null && beacon2Side != null &&
+                        beacon1Side != Configuration.Beacon.NULL && beacon2Side != Configuration.Beacon.NULL) {
+                    switch (phase) {
+                        case DRIVING_FROM_START:
+                            robot.getGrabber().getController().setServoPosition(1, 1.0);
+                            driveWithEncoders(1.0, 80.0, 80.0, 5.0);
+                            phase = AutonomousPhase.TURNING_TO_BEACON1;
+
+                            break;
+                        case TURNING_TO_BEACON1:
+                            turnWithEncoders(0.5, 15.0, 1.0);
+                            phase = AutonomousPhase.DRIVING_TO_BEACON1;
+
+                            break;
+                        case DRIVING_TO_BEACON1:
+                            if (beacon1Side == Configuration.Beacon.LEFT) {
+                                driveWithEncoders(1.0, 1.0, 1.0, 1.0);
+                                turnWithEncoders(0.5, -10.0, 1.0);
+                                driveWithEncoders(-1.0, -1.0, -1.0, 1.0);
+                                turnWithEncoders(0.5, 10.0, 1.0);
+                            } else {
+                                driveWithEncoders(1.0, 1.0, 1.0, 1.0);
+                                turnWithEncoders(0.5, 10.0, 1.0);
+                                driveWithEncoders(-1.0, -1.0, -1.0, 1.0);
+                                turnWithEncoders(0.5, -10.0, 1.0);
+                            }
+                            phase = AutonomousPhase.BACKING_UP1;
+
+                            break;
+                        case BACKING_UP1:
+                            driveWithEncoders(-1.0, -12.0, -12.0, 3.0);
+                            phase = AutonomousPhase.TURNING_TO_BEACON1;
+
+                            break;
+                        case TURNING_FROM_BEACON1:
+                            turnWithEncoders(0.5, -90.0, 1.0);
+                            phase = AutonomousPhase.DRIVING_FROM_BEACON1;
+
+                            break;
+                        case DRIVING_FROM_BEACON1:
+                            driveWithEncoders(1.0, 45.0, 45.0, 5.0);
+                            phase = AutonomousPhase.TURNING_TO_BEACON2;
+
+                            break;
+                        case TURNING_TO_BEACON2:
+                            turnWithEncoders(0.5, 45.0, 1.0);
+                            phase = AutonomousPhase.DRIVING_TO_BEACON2;
+
+                            break;
+                        case DRIVING_TO_BEACON2:
+                            driveWithEncoders(1.0, 11.0, 11.0, 3.0);
+                            if (beacon2Side == Configuration.Beacon.LEFT) {
+                                driveWithEncoders(1.0, 1.0, 1.0, 1.0);
+                                turnWithEncoders(0.5, -10.0, 1.0);
+                                driveWithEncoders(-1.0, -1.0, -1.0, 1.0);
+                                turnWithEncoders(0.5, 10.0, 1.0);
+                            } else {
+                                driveWithEncoders(1.0, 1.0, 1.0, 1.0);
+                                turnWithEncoders(0.5, 10.0, 1.0);
+                                driveWithEncoders(-1.0, -1.0, -1.0, 1.0);
+                                turnWithEncoders(0.5, -10.0, 1.0);
+                            }
+                            phase = AutonomousPhase.BACKING_UP2;
+
+                            break;
+                        case BACKING_UP2:
+                            driveWithEncoders(-1.0, -12.0, -12.0, 3.0);
+                            phase = AutonomousPhase.TURNING_TO_CENTER;
+
+                            break;
+                        case TURNING_TO_CENTER:
+                            turnWithEncoders(0.5, 90.0, 1.0);
+                            phase = AutonomousPhase.DRIVING_TO_CENTER;
+
+                            break;
+                        case DRIVING_TO_CENTER:
+                            driveWithEncoders(1.0, 70.0, 70.0, 5.0);
+                            phase = AutonomousPhase.TURNING_TO_CORNER;
+
+                            break;
+                        case TURNING_TO_CORNER:
+                            turnWithEncoders(0.5, -90.0, 1.0);
+                            phase = AutonomousPhase.DRIVING_TO_CORNER;
+
+                            break;
+                        case DRIVING_TO_CORNER:
+                            driveWithEncoders(1.0, 80.0, 80.0, 5.0);
+                            phase = AutonomousPhase.GRABBING_CORNER;
+
+                            break;
+                        case GRABBING_CORNER:
+                            robot.getGrabber().getController().setServoPosition(1, 0.0);
+                            phase = AutonomousPhase.COMPLETED;
+
+                            break;
+                        case COMPLETED:
+                            telemetry.addData("Status", "Complete");
+                            telemetry.update();
+                            break;
+                    }
+                }
+            }
+        } else if (config.getTeam() == Configuration.Team.TEAM_10863) {
+            robot.getLeftWheel().setPower(0.6);
+            robot.getRightWheel().setPower(0.6);
+            elapsedTime.reset();
+
+            while (elapsedTime.seconds() < 3.0) {
+                telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", elapsedTime.seconds());
+                telemetry.update();
+                idle();
+            }
+
+            robot.getLeftWheel().setPower(0);
+            robot.getRightWheel().setPower(0);
+
+            telemetry.addData("Path", "Complete");
+            telemetry.update();
+            sleep(1000);
+            idle();
+        } else {
+            robot.getLeftWheel().setPower(0.6);
+            robot.getRightWheel().setPower(0.6);
+            elapsedTime.reset();
+
+            while (elapsedTime.seconds() < 3.0) {
+                telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", elapsedTime.seconds());
+                telemetry.update();
+                idle();
+            }
+
+            robot.getLeftWheel().setPower(0);
+            robot.getRightWheel().setPower(0);
+
+            telemetry.addData("Path", "Complete");
+            telemetry.update();
+            sleep(1000);
+            idle();
+        }
+    }
+
+    private void runVuforiaTracking(Configuration config) throws InterruptedException {
+        String key = "Ac+mSSz/////AAAAGX7qWAluukJCne3f/WMl3lR041QLVsuBByABDY/OoLY4P/" +
+                "aqR+qbKcEfjdWYffl1UKkPGmkNiYOLwRRAjFMowUftC92bbpf7Y0N+Tsz772/ETwHx3LO" +
+                "YWpCM6okjazmdOGg7umVHWc9E4GiSri3dCFvV/4qm0uJVF4OE7eEbQ9g1qwipSQVMDQCkQ" +
+                "vnpsrHOJ26ya9KUw/pyTZyBwqXdfZiRK4jB5EK4a2laRO0UIuNfW+wM7lRZILMRulNVyVF2x" +
+                "c5Mxo8VAj2OjwBzmUXaCZxTajj8PgrPPU6yqZT+YxXJbcCem22E70urP6yrffwy2AFD6d3LGVYc3" +
+                "hA9mTJEGp5G9UFWzHPcCh9k5+kjH6o8T";
+
+        OpenGLMatrix lastLocation = null;
+
+        VuforiaLocalizer vuforia = null;
+
+        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters(com.qualcomm.ftcrobotcontroller.R.id.cameraMonitorViewId);
+        parameters.vuforiaLicenseKey = key;
+        parameters.cameraDirection = VuforiaLocalizer.CameraDirection.BACK;
+        vuforia = ClassFactory.createVuforiaLocalizer(parameters);
+
+        VuforiaTrackables stonesAndChips = vuforia.loadTrackablesFromAsset("StonesAndChips");
+        VuforiaTrackable redTarget = stonesAndChips.get(0);
+        redTarget.setName("RedTarget");  // Stones
+
+        VuforiaTrackable blueTarget  = stonesAndChips.get(1);
+        blueTarget.setName("BlueTarget");  // Chips
+
+        List<VuforiaTrackable> allTrackables = new ArrayList<VuforiaTrackable>();
+        allTrackables.addAll(stonesAndChips);
+
+        float mmPerInch = 25.4f;
+        float mmBotWidth = 18 * mmPerInch; // TODO: Measure bot width
+        float mmFTCFieldWidth = (12*12 - 2) * mmPerInch;
+
+        // Red location
+        OpenGLMatrix redTargetLocationOnField = OpenGLMatrix.translation(-mmFTCFieldWidth/2, 0, 0)
+                .multiplied(Orientation.getRotationMatrix(AxesReference.EXTRINSIC, AxesOrder.XZX, AngleUnit.DEGREES, 90, 90, 0));
+        redTarget.setLocation(redTargetLocationOnField);
+        RobotLog.ii(key, "Red Target=%s", format(redTargetLocationOnField));
+
+        // Blue location
+        OpenGLMatrix blueTargetLocationOnField = OpenGLMatrix.translation(0, mmFTCFieldWidth/2, 0)
+                .multiplied(Orientation.getRotationMatrix(AxesReference.EXTRINSIC, AxesOrder.XZX, AngleUnit.DEGREES, 90, 0, 0));
+        blueTarget.setLocation(blueTargetLocationOnField);
+        RobotLog.ii(key, "Blue Target=%s", format(blueTargetLocationOnField));
+
+        // Phone Orientation
+        OpenGLMatrix phoneLocationOnRobot = OpenGLMatrix.translation(mmBotWidth/2,0,0)
+                .multiplied(Orientation.getRotationMatrix(AxesReference.EXTRINSIC, AxesOrder.YZY, AngleUnit.DEGREES, -90, 0, 0));
+        RobotLog.ii(key, "phone=%s", format(phoneLocationOnRobot));
+
+        ((VuforiaTrackableDefaultListener)redTarget.getListener()).setPhoneInformation(phoneLocationOnRobot, parameters.cameraDirection);
+        ((VuforiaTrackableDefaultListener)blueTarget.getListener()).setPhoneInformation(phoneLocationOnRobot, parameters.cameraDirection);
+
+        // Init trackable
+        if (!stonesAndChipsActivated)
+            stonesAndChips.activate();
+
+        // Run tracker
+        for (VuforiaTrackable trackable : allTrackables) {
+            telemetry.addData(trackable.getName(), ((VuforiaTrackableDefaultListener)trackable.getListener()).isVisible() ? "Visible" : "Not Visible");
+
+            OpenGLMatrix robotLocationTransform = ((VuforiaTrackableDefaultListener)trackable.getListener()).getUpdatedRobotLocation();
+            if (robotLocationTransform != null) {
+                lastLocation = robotLocationTransform;
+            }
+        }
+
+        if (lastLocation != null) {
+            telemetry.addData("Pos", format(lastLocation));
+        } else {
+            telemetry.addData("Pos", "Unknown");
+        }
+        telemetry.update();
+        idle();
+    }
+
+    private String format(OpenGLMatrix transformationMatrix) {
+        return transformationMatrix.formatAsTransform();
     }
 
 }
