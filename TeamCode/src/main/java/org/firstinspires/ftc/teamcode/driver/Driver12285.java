@@ -33,7 +33,6 @@ public class Driver12285 extends LinearOpMode {
             robot.getLeftWheel().setPower(left);
             robot.getRightWheel().setPower(right);
 
-            // Use dpad up and down to move the swiffer sweeper :P
             if (gamepad1.dpad_down)
                 robot.getLift().setPower(-1.0);
             else if (gamepad1.dpad_up)

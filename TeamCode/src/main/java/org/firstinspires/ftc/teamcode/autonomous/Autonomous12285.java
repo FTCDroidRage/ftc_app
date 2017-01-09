@@ -20,7 +20,7 @@ public class Autonomous12285 extends LinearOpMode {
 
         waitForStart();
 
-        double forwardSpeed = 0.6;
+        double forwardSpeed = 1.0;
 
         robot.getLeftWheel().setPower(forwardSpeed);
         robot.getRightWheel().setPower(forwardSpeed);

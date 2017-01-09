@@ -15,8 +15,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
-import org.firstinspires.ftc.teamcode.autonomous.Autonomous12285;
-import org.firstinspires.ftc.teamcode.hardware.Hardware10863;
 import org.firstinspires.ftc.teamcode.hardware.Hardware12285;
 import org.firstinspires.ftc.teamcode.hardware.HardwareNull;
 import org.firstinspires.ftc.teamcode.util.Configuration;
@@ -28,7 +26,6 @@ import java.util.List;
 public class AutoGlobal extends LinearOpMode {
 
     private Hardware12285 robot;
-    private Hardware10863 r;
     private HardwareNull n;
     private ElapsedTime elapsedTime = new ElapsedTime();
 
@@ -148,9 +145,6 @@ public class AutoGlobal extends LinearOpMode {
 
             robot.getLeftWheel().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             robot.getRightWheel().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        } else if (config.getTeam() == Configuration.Team.TEAM_10863) {
-            this.r = new Hardware10863();
-            r.init(hardwareMap);
         } else {
             this.n = new HardwareNull();
             n.init(hardwareMap);
