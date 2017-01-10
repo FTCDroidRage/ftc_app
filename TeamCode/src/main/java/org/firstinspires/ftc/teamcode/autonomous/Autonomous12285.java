@@ -4,11 +4,12 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.hardware.Hardware12285;
+import org.firstinspires.ftc.teamcode.hardware.NewHardware;
 
 @com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Autonomous 12285", group="Linear Opmode")
 public class Autonomous12285 extends LinearOpMode {
 
-    private Hardware12285 robot = new Hardware12285();
+    private NewHardware robot = new NewHardware();
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override
@@ -22,8 +23,8 @@ public class Autonomous12285 extends LinearOpMode {
 
         double forwardSpeed = 1.0;
 
-        robot.getLeftWheel().setPower(forwardSpeed);
-        robot.getRightWheel().setPower(forwardSpeed);
+        robot.getWheelLeft().setPower(forwardSpeed);
+        robot.getWheelRight().setPower(forwardSpeed);
         runtime.reset();
 
         while (opModeIsActive() && (runtime.seconds() < 4.5)) {
@@ -32,8 +33,8 @@ public class Autonomous12285 extends LinearOpMode {
             idle();
         }
 
-        robot.getLeftWheel().setPower(0);
-        robot.getRightWheel().setPower(0);
+        robot.getWheelLeft().setPower(0);
+        robot.getWheelRight().setPower(0);
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
