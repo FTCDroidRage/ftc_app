@@ -4,12 +4,11 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.hardware.Hardware12285;
-import org.firstinspires.ftc.teamcode.hardware.NewHardware;
 
 @com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Autonomous 12285", group="Linear Opmode")
 public class Autonomous12285 extends LinearOpMode {
 
-    private NewHardware robot = new NewHardware();
+    private Hardware12285 robot = new Hardware12285();
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override

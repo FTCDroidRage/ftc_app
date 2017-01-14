@@ -43,7 +43,7 @@ public class AutoGlobal extends LinearOpMode {
 
     private double countsPerMotorRev = 1440;
     private double driveGearReduction = 2.0;
-    private double wheelDiameterInches = 1.3;
+    private double wheelDiameterInches = 4.0;
     private double countsPerInch = (countsPerMotorRev * driveGearReduction) / (wheelDiameterInches * 3.1415);
 
     @Override
@@ -52,7 +52,7 @@ public class AutoGlobal extends LinearOpMode {
 
         this.phase = AutonomousPhase.WAITING;
 
-        telemetry.addData("Status", "Waiting for alliance team, and beacon configuration...");
+        telemetry.addData("Status", "Waiting for alliance, team, and beacon configuration...");
         telemetry.update();
 
         while (!configured) {
@@ -139,18 +139,18 @@ public class AutoGlobal extends LinearOpMode {
             telemetry.addData("Status", "Resetting Encoders");
             telemetry.update();
 
-            robot.getLeftWheel().setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            robot.getRightWheel().setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            robot.getWheelLeft().setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            robot.getWheelRight().setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             idle();
 
-            robot.getLeftWheel().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            robot.getRightWheel().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            robot.getWheelLeft().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            robot.getWheelRight().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         } else {
             this.n = new HardwareNull();
             n.init(hardwareMap);
         }
 
-        while (opModeIsActive()) {
+        while (opModeIsActive() && !robot.getWheelRight().isBusy() && !robot.getWheelLeft().isBusy()) {
             runAutonomous(config);
         }
     }
@@ -161,36 +161,36 @@ public class AutoGlobal extends LinearOpMode {
         int newRightTarget;
 
         if (opModeIsActive()) {
-            newLeftTarget = robot.getLeftWheel().getCurrentPosition() + (int)(inchesLeft * countsPerInch);
-            newRightTarget = robot.getLeftWheel ().getCurrentPosition() + (int)(inchesRight * countsPerInch);
+            newLeftTarget = robot.getWheelLeft().getCurrentPosition() + (int)(inchesLeft * countsPerInch);
+            newRightTarget = robot.getWheelLeft ().getCurrentPosition() + (int)(inchesRight * countsPerInch);
 
-            robot.getLeftWheel().setTargetPosition(newLeftTarget);
-            robot.getRightWheel().setTargetPosition(newRightTarget);
+            robot.getWheelLeft().setTargetPosition(newLeftTarget);
+            robot.getWheelRight().setTargetPosition(newRightTarget);
 
-            robot.getLeftWheel().setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.getRightWheel().setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.getWheelLeft().setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.getWheelRight().setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             elapsedTime.reset();
-            robot.getLeftWheel().setPower(speed);
-            robot.getRightWheel().setPower(speed);
+            robot.getWheelLeft().setPower(speed);
+            robot.getWheelRight().setPower(speed);
 
-            while (opModeIsActive() && elapsedTime.seconds() < timeout && robot.getLeftWheel().isBusy()
-                    && robot.getRightWheel().isBusy()) {
+            while (opModeIsActive() && elapsedTime.seconds() < timeout && robot.getWheelLeft().isBusy()
+                    && robot.getWheelRight().isBusy()) {
 
                 telemetry.addData("Path1",  "Running to %7d :%7d", newLeftTarget,  newRightTarget);
                 telemetry.addData("Path2",  "Running at %7d :%7d",
-                        robot.getLeftWheel().getCurrentPosition(),
-                        robot.getRightWheel().getCurrentPosition());
+                        robot.getWheelLeft().getCurrentPosition(),
+                        robot.getWheelRight().getCurrentPosition());
                 telemetry.update();
 
                 idle();
             }
 
-            robot.getLeftWheel().setPower(0);
-            robot.getRightWheel().setPower(0);
+            robot.getWheelLeft().setPower(0);
+            robot.getWheelRight().setPower(0);
 
-            robot.getLeftWheel().setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            robot.getRightWheel().setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            robot.getWheelLeft().setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            robot.getWheelRight().setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
     }
 
@@ -202,35 +202,35 @@ public class AutoGlobal extends LinearOpMode {
         double inches = 20.5 * Math.PI * degrees / 360;
 
         if (opModeIsActive()) {
-            newLeftTarget = robot.getLeftWheel().getCurrentPosition() + (int)(inches * countsPerInch);
-            newRightTarget = robot.getRightWheel().getCurrentPosition() + (int)(inches * countsPerInch);
+            newLeftTarget = robot.getWheelLeft().getCurrentPosition() + (int)(inches * countsPerInch);
+            newRightTarget = robot.getWheelRight().getCurrentPosition() + (int)(inches * countsPerInch);
 
-            robot.getLeftWheel().setTargetPosition(newLeftTarget);
-            robot.getRightWheel().setTargetPosition(newRightTarget);
+            robot.getWheelLeft().setTargetPosition(newLeftTarget);
+            robot.getWheelRight().setTargetPosition(newRightTarget);
 
-            robot.getLeftWheel().setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            robot.getRightWheel().setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.getWheelLeft().setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            robot.getWheelRight().setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             elapsedTime.reset();
-            robot.getLeftWheel().setPower(speed);
-            robot.getRightWheel().setPower(speed);
+            robot.getWheelLeft().setPower(speed);
+            robot.getWheelRight().setPower(speed);
 
-            while (opModeIsActive() && elapsedTime.seconds() < timeout && robot.getLeftWheel().isBusy()
-                    && robot.getRightWheel().isBusy()) {
+            while (opModeIsActive() && elapsedTime.seconds() < timeout && robot.getWheelLeft().isBusy()
+                    && robot.getWheelRight().isBusy()) {
                 telemetry.addData("Path1",  "Running to %7d :%7d", newLeftTarget,  newRightTarget);
                 telemetry.addData("Path2",  "Running at %7d :%7d",
-                        robot.getLeftWheel().getCurrentPosition(),
-                        robot.getRightWheel().getCurrentPosition());
+                        robot.getWheelLeft().getCurrentPosition(),
+                        robot.getWheelRight().getCurrentPosition());
                 telemetry.update();
 
                 idle();
             }
 
-            robot.getLeftWheel().setPower(0);
-            robot.getRightWheel().setPower(0);
+            robot.getWheelLeft().setPower(0);
+            robot.getWheelRight().setPower(0);
 
-            robot.getLeftWheel().setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            robot.getRightWheel().setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            robot.getWheelLeft().setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            robot.getWheelRight().setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         }
     }
 
@@ -242,7 +242,6 @@ public class AutoGlobal extends LinearOpMode {
                         beacon1Side != Configuration.Beacon.NULL && beacon2Side != Configuration.Beacon.NULL) {
                     switch (phase) {
                         case DRIVING_FROM_START:
-                            robot.getGrabber().getController().setServoPosition(1, 1.0);
                             driveWithEncoders(1.0, 80.0, 80.0, 5.0);
                             phase = AutonomousPhase.TURNING_TO_BEACON1;
 
@@ -329,7 +328,6 @@ public class AutoGlobal extends LinearOpMode {
 
                             break;
                         case GRABBING_CORNER:
-                            robot.getGrabber().getController().setServoPosition(1, 0.0);
                             phase = AutonomousPhase.COMPLETED;
 
                             break;
@@ -338,11 +336,149 @@ public class AutoGlobal extends LinearOpMode {
                             telemetry.update();
                             break;
                     }
+                } else {
+                    robot.getWheelLeft().setPower(1.0);
+                    robot.getWheelRight().setPower(1.0);
+                    elapsedTime.reset();
+
+                    while (opModeIsActive() && (elapsedTime.seconds() < 4.5)) {
+                        telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", elapsedTime.seconds());
+                        telemetry.update();
+                        idle();
+                    }
+
+                    robot.getWheelLeft().setPower(0);
+                    robot.getWheelRight().setPower(0);
+
+                    telemetry.addData("Path", "Complete");
+                    telemetry.update();
+                    sleep(1000);
+                    idle();
+                }
+            } else {
+                if (alliance == Configuration.Alliance.RED) {
+                    if (beacon1Side != null && beacon2Side != null &&
+                            beacon1Side != Configuration.Beacon.NULL && beacon2Side != Configuration.Beacon.NULL) {
+                        switch (phase) {
+                            case DRIVING_FROM_START:
+                                driveWithEncoders(1.0, 80.0, 80.0, 5.0);
+                                phase = AutonomousPhase.TURNING_TO_BEACON1;
+
+                                break;
+                            case TURNING_TO_BEACON1:
+                                turnWithEncoders(0.5, -15.0, 1.0);
+                                phase = AutonomousPhase.DRIVING_TO_BEACON1;
+
+                                break;
+                            case DRIVING_TO_BEACON1:
+                                if (beacon1Side == Configuration.Beacon.LEFT) {
+                                    driveWithEncoders(1.0, 1.0, 1.0, 1.0);
+                                    turnWithEncoders(0.5, 10.0, 1.0);
+                                    driveWithEncoders(-1.0, -1.0, -1.0, 1.0);
+                                    turnWithEncoders(0.5, -10.0, 1.0);
+                                } else {
+                                    driveWithEncoders(1.0, 1.0, 1.0, 1.0);
+                                    turnWithEncoders(0.5, -10.0, 1.0);
+                                    driveWithEncoders(-1.0, -1.0, -1.0, 1.0);
+                                    turnWithEncoders(0.5, 10.0, 1.0);
+                                }
+                                phase = AutonomousPhase.BACKING_UP1;
+
+                                break;
+                            case BACKING_UP1:
+                                driveWithEncoders(-1.0, -12.0, -12.0, 3.0);
+                                phase = AutonomousPhase.TURNING_TO_BEACON1;
+
+                                break;
+                            case TURNING_FROM_BEACON1:
+                                turnWithEncoders(0.5, 90.0, 1.0);
+                                phase = AutonomousPhase.DRIVING_FROM_BEACON1;
+
+                                break;
+                            case DRIVING_FROM_BEACON1:
+                                driveWithEncoders(1.0, 45.0, 45.0, 5.0);
+                                phase = AutonomousPhase.TURNING_TO_BEACON2;
+
+                                break;
+                            case TURNING_TO_BEACON2:
+                                turnWithEncoders(0.5, -45.0, 1.0);
+                                phase = AutonomousPhase.DRIVING_TO_BEACON2;
+
+                                break;
+                            case DRIVING_TO_BEACON2:
+                                driveWithEncoders(1.0, 11.0, 11.0, 3.0);
+                                if (beacon2Side == Configuration.Beacon.LEFT) {
+                                    driveWithEncoders(1.0, 1.0, 1.0, 1.0);
+                                    turnWithEncoders(0.5, 10.0, 1.0);
+                                    driveWithEncoders(-1.0, -1.0, -1.0, 1.0);
+                                    turnWithEncoders(0.5, -10.0, 1.0);
+                                } else {
+                                    driveWithEncoders(1.0, 1.0, 1.0, 1.0);
+                                    turnWithEncoders(0.5, -10.0, 1.0);
+                                    driveWithEncoders(-1.0, -1.0, -1.0, 1.0);
+                                    turnWithEncoders(0.5, 10.0, 1.0);
+                                }
+                                phase = AutonomousPhase.BACKING_UP2;
+
+                                break;
+                            case BACKING_UP2:
+                                driveWithEncoders(-1.0, -12.0, -12.0, 3.0);
+                                phase = AutonomousPhase.TURNING_TO_CENTER;
+
+                                break;
+                            case TURNING_TO_CENTER:
+                                turnWithEncoders(0.5, -90.0, 1.0);
+                                phase = AutonomousPhase.DRIVING_TO_CENTER;
+
+                                break;
+                            case DRIVING_TO_CENTER:
+                                driveWithEncoders(1.0, 70.0, 70.0, 5.0);
+                                phase = AutonomousPhase.TURNING_TO_CORNER;
+
+                                break;
+                            case TURNING_TO_CORNER:
+                                turnWithEncoders(0.5, 90.0, 1.0);
+                                phase = AutonomousPhase.DRIVING_TO_CORNER;
+
+                                break;
+                            case DRIVING_TO_CORNER:
+                                driveWithEncoders(1.0, 80.0, 80.0, 5.0);
+                                phase = AutonomousPhase.GRABBING_CORNER;
+
+                                break;
+                            case GRABBING_CORNER:
+                                phase = AutonomousPhase.COMPLETED;
+
+                                break;
+                            case COMPLETED:
+                                telemetry.addData("Status", "Complete");
+                                telemetry.update();
+                                break;
+                        }
+                    } else {
+                        robot.getWheelLeft().setPower(1.0);
+                        robot.getWheelRight().setPower(1.0);
+                        elapsedTime.reset();
+
+                        while (opModeIsActive() && (elapsedTime.seconds() < 4.5)) {
+                            telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", elapsedTime.seconds());
+                            telemetry.update();
+                            idle();
+                        }
+
+                        robot.getWheelLeft().setPower(0);
+                        robot.getWheelRight().setPower(0);
+
+                        telemetry.addData("Path", "Complete");
+                        telemetry.update();
+                        sleep(1000);
+                        idle();
+                    }
                 }
             }
         } else if (config.getTeam() == Configuration.Team.TEAM_10863) {
-            robot.getLeftWheel().setPower(0.6);
-            robot.getRightWheel().setPower(0.6);
+            robot.getWheelLeft().setPower(0.6);
+            robot.getWheelRight().setPower(0.6);
             elapsedTime.reset();
 
             while (elapsedTime.seconds() < 3.0) {
@@ -351,16 +487,16 @@ public class AutoGlobal extends LinearOpMode {
                 idle();
             }
 
-            robot.getLeftWheel().setPower(0);
-            robot.getRightWheel().setPower(0);
+            robot.getWheelLeft().setPower(0);
+            robot.getWheelRight().setPower(0);
 
             telemetry.addData("Path", "Complete");
             telemetry.update();
             sleep(1000);
             idle();
         } else {
-            robot.getLeftWheel().setPower(0.6);
-            robot.getRightWheel().setPower(0.6);
+            robot.getWheelLeft().setPower(0.6);
+            robot.getWheelRight().setPower(0.6);
             elapsedTime.reset();
 
             while (elapsedTime.seconds() < 3.0) {
@@ -369,8 +505,8 @@ public class AutoGlobal extends LinearOpMode {
                 idle();
             }
 
-            robot.getLeftWheel().setPower(0);
-            robot.getRightWheel().setPower(0);
+            robot.getWheelLeft().setPower(0);
+            robot.getWheelRight().setPower(0);
 
             telemetry.addData("Path", "Complete");
             telemetry.update();
