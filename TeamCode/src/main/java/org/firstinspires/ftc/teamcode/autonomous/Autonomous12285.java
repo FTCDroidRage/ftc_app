@@ -22,11 +22,11 @@ public class Autonomous12285 extends LinearOpMode {
 
         double forwardSpeed = 1.0;
 
-        robot.getWheelLeft().setPower(forwardSpeed);
+        robot.getWheelLeft().setPower(-forwardSpeed);
         robot.getWheelRight().setPower(forwardSpeed);
         runtime.reset();
 
-        while (opModeIsActive() && (runtime.seconds() < 4.5)) {
+        while (opModeIsActive() && (runtime.seconds() < 3.0)) {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
             idle();

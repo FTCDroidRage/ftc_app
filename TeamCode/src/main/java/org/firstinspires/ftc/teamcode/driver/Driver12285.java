@@ -30,12 +30,12 @@ public class Driver12285 extends LinearOpMode {
             robot.getWheelLeft().setPower(left);
             robot.getWheelRight().setPower(right);
 
-            if (gamepad1.dpad_down) {
+            if (gamepad2.dpad_down) {
                 robot.getLauncher1().setPower(-1.0);
                 robot.getLauncher2().setPower(1.0);
 
                 robot.getLift().setPower(1.0);
-            } else if (gamepad1.dpad_up) {
+            } else if (gamepad2.dpad_up) {
                 robot.getLauncher1().setPower(1.0);
                 robot.getLauncher2().setPower(-1.0);
 
@@ -47,9 +47,9 @@ public class Driver12285 extends LinearOpMode {
                 robot.getLift().setPower(0.0);
             }
 
-            if (gamepad1.y) {
+            if (gamepad2.y) {
                 robot.getSweeper().setPower(1.0);
-            } else if (gamepad1.a) {
+            } else if (gamepad2.a) {
                 robot.getSweeper().setPower(-1.0);
             } else {
                 robot.getSweeper().setPower(0.0);
