@@ -22,7 +22,7 @@ import org.firstinspires.ftc.teamcode.util.Configuration;
 import java.util.ArrayList;
 import java.util.List;
 
-@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="[ALPHA] Global Autonomous", group="Linear Opmode")
+@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="[WIP] Complex", group="Linear Opmode")
 public class AutoGlobal extends LinearOpMode {
 
     private Hardware12285 robot;
