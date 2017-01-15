@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -49,7 +49,7 @@ public class DriveAndShoot extends LinearOpMode {
             robot.getSweeper().setPower(0.0);
         }
 
-        while (opModeIsActive() && runtime.seconds() > 8.0) {
+        while (opModeIsActive() && runtime.seconds() > 8.3) {
             robot.getWheelLeft().setPower(0.0);
             robot.getWheelRight().setPower(0.0);
 
