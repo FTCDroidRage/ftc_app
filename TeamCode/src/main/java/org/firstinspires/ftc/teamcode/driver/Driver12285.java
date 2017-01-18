@@ -24,8 +24,8 @@ public class Driver12285 extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            left = Range.clip(gamepad1.left_stick_y, -1, 1);
-            right = Range.clip(-gamepad1.right_stick_y, -1, 1);
+            left = -Range.clip(gamepad1.left_stick_y, -1, 1);
+            right = -Range.clip(-gamepad1.right_stick_y, -1, 1);
 
             robot.getWheelLeft().setPower(left);
             robot.getWheelRight().setPower(right);

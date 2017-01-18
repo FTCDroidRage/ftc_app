@@ -20,7 +20,7 @@ public class DriveAndShoot extends LinearOpMode {
 
         waitForStart();
 
-        double forwardSpeed = 1.0;
+        double forwardSpeed = -0.5;
 
         while (opModeIsActive() && runtime.seconds() < 1.8) {
             robot.getWheelLeft().setPower(-forwardSpeed);
