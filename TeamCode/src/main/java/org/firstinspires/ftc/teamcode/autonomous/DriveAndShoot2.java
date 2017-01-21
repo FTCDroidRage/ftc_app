@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.hardware.Hardware12285;
 
-@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Drive and Shoot", group="Linear Opmode")
-public class DriveAndShoot extends LinearOpMode {
+@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Drive and Shoot 2", group="Linear Opmode")
+public class DriveAndShoot2 extends LinearOpMode {
 
     private Hardware12285 robot = new Hardware12285();
     private ElapsedTime runtime = new ElapsedTime();
@@ -22,12 +22,12 @@ public class DriveAndShoot extends LinearOpMode {
 
         double forwardSpeed = 0.5;
 
-        while (opModeIsActive() && runtime.seconds() < 1.9) {
+        while (opModeIsActive() && runtime.seconds() < 1.6) {
             robot.getWheelLeft().setPower(-forwardSpeed);
             robot.getWheelRight().setPower(forwardSpeed);
         }
 
-        while (opModeIsActive() && runtime.seconds() >= 1.9 && runtime.seconds() <= 6.9) {
+        while (opModeIsActive() && runtime.seconds() >= 1.6 && runtime.seconds() <= 6.9) {
             robot.getWheelLeft().setPower(0.0);
             robot.getWheelRight().setPower(0.0);
 
@@ -38,7 +38,7 @@ public class DriveAndShoot extends LinearOpMode {
             robot.getSweeper().setPower(-1.0);
         }
 
-        while (opModeIsActive() && runtime.seconds() > 6.9 && runtime.seconds() <= 8.5) {
+        while (opModeIsActive() && runtime.seconds() > 6.9 && runtime.seconds() <= 8.0) {
             robot.getWheelLeft().setPower(-forwardSpeed);
             robot.getWheelRight().setPower(forwardSpeed);
 
@@ -49,7 +49,7 @@ public class DriveAndShoot extends LinearOpMode {
             robot.getSweeper().setPower(0.0);
         }
 
-        while (opModeIsActive() && runtime.seconds() > 8.3) {
+        while (opModeIsActive() && runtime.seconds() > 8.0) {
             robot.getWheelLeft().setPower(0.0);
             robot.getWheelRight().setPower(0.0);
 
