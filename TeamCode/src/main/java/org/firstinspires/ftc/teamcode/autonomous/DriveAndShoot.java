@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -20,7 +20,7 @@ public class DriveAndShoot extends LinearOpMode {
 
         waitForStart();
 
-        double forwardSpeed = 1.0;
+        double forwardSpeed = -0.5;
 
         while (opModeIsActive() && runtime.seconds() < 1.9) {
             robot.getWheelLeft().setPower(-forwardSpeed);
@@ -49,7 +49,11 @@ public class DriveAndShoot extends LinearOpMode {
             robot.getSweeper().setPower(0.0);
         }
 
+<<<<<<< HEAD:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/DriveAndShoot.java
         while (opModeIsActive() && runtime.seconds() > 8.5) {
+=======
+        while (opModeIsActive() && runtime.seconds() > 8.3) {
+>>>>>>> 303405a9a41e1469f3581e8ab5d7929e47fbed83:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/autonomous/DriveAndShoot.java
             robot.getWheelLeft().setPower(0.0);
             robot.getWheelRight().setPower(0.0);
 
