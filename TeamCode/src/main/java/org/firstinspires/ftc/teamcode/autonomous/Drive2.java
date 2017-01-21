@@ -20,7 +20,7 @@ public class Drive2 extends LinearOpMode {
 
         waitForStart();
 
-        double forwardSpeed = -0.5;
+        double forwardSpeed = 0.5;
 
         robot.getWheelLeft().setPower(-forwardSpeed);
         robot.getWheelRight().setPower(forwardSpeed);
