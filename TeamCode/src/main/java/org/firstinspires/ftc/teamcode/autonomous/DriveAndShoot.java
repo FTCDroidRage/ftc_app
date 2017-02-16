@@ -27,7 +27,12 @@ public class DriveAndShoot extends LinearOpMode {
             robot.getWheelRight().setPower(-forwardSpeed);
         }
 
-        while (opModeIsActive() && runtime.seconds() >= 1.8 && runtime.seconds() <= 6.8) {
+        while (opModeIsActive() && runtime.seconds() < 1.9) {
+            robot.getWheelLeft().setPower(-forwardSpeed);
+            robot.getWheelRight().setPower(forwardSpeed);
+        }
+
+        while (opModeIsActive() && runtime.seconds() >= 1.9 && runtime.seconds() <= 6.9) {
             robot.getWheelLeft().setPower(0.0);
             robot.getWheelRight().setPower(0.0);
 
@@ -35,7 +40,7 @@ public class DriveAndShoot extends LinearOpMode {
             robot.getLift().setPower(1.0);
         }
 
-        while (opModeIsActive() && runtime.seconds() > 6.8 && runtime.seconds() <= 8.0) {
+        while (opModeIsActive() && runtime.seconds() > 6.9 && runtime.seconds() <= 8.5) {
             robot.getWheelLeft().setPower(-forwardSpeed);
             robot.getWheelRight().setPower(forwardSpeed);
 
