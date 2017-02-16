@@ -22,8 +22,8 @@ public class Drive extends LinearOpMode {
 
         double forwardSpeed = 1.0;
 
-        robot.getWheelLeft().setPower(-forwardSpeed);
-        robot.getWheelRight().setPower(forwardSpeed);
+        robot.getWheelLeft().setPower(forwardSpeed);
+        robot.getWheelRight().setPower(-forwardSpeed);
         runtime.reset();
 
         while (opModeIsActive() && (runtime.seconds() < 3.0)) {
