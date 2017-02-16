@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.hardware;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.util.Hardware;
@@ -11,45 +12,33 @@ public class Hardware12285 implements Hardware {
     private HardwareMap hardwareMap;
     private ElapsedTime elapsedTime = new ElapsedTime();
 
-    private DcMotor launcher1;
-    private DcMotor launcher2;
+    private DcMotor lift;
+    private DcMotor paddle;
 
     private DcMotor wheelLeft;
     private DcMotor wheelRight;
-
-    private DcMotor lift;
-    private DcMotor sweeper;
 
     @Override
     public void init(HardwareMap hardwareMap) {
         this.hardwareMap = hardwareMap;
 
-        this.launcher1 = hardwareMap.dcMotor.get("launcher1");
-        this.launcher2 = hardwareMap.dcMotor.get("launcher2");
+        this.lift = hardwareMap.dcMotor.get("lift");
+        this.paddle = hardwareMap.dcMotor.get("paddle");
 
         this.wheelLeft = hardwareMap.dcMotor.get("wheel left");
         this.wheelRight = hardwareMap.dcMotor.get("wheel right");
 
-        this.lift = hardwareMap.dcMotor.get("lift");
-        this.sweeper = hardwareMap.dcMotor.get("sweeper");
-
-        launcher1.setPower(0.0);
-        launcher2.setPower(0.0);
+        lift.setPower(0.0);
+        paddle.setPower(0.0);
 
         wheelLeft.setPower(0.0);
         wheelRight.setPower(0.0);
 
-        lift.setPower(0.0);
-        sweeper.setPower(0.0);
-
-        launcher1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        launcher2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        lift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        paddle.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         wheelLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         wheelRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-        lift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        sweeper.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     @Override
@@ -71,12 +60,12 @@ public class Hardware12285 implements Hardware {
         return elapsedTime;
     }
 
-    public DcMotor getLauncher1() {
-        return launcher1;
+    public DcMotor getLift() {
+        return lift;
     }
 
-    public DcMotor getLauncher2() {
-        return launcher2;
+    public DcMotor getPaddle() {
+        return paddle;
     }
 
     public DcMotor getWheelLeft() {
@@ -85,14 +74,6 @@ public class Hardware12285 implements Hardware {
 
     public DcMotor getWheelRight() {
         return wheelRight;
-    }
-
-    public DcMotor getLift() {
-        return lift;
-    }
-
-    public DcMotor getSweeper() {
-        return sweeper;
     }
 
 }

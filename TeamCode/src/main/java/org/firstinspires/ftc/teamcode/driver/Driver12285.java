@@ -13,9 +13,6 @@ public class Driver12285 extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        double left;
-        double right;
-
         robot.init(hardwareMap);
 
         telemetry.addData("Say", "Hello Driver");
@@ -24,30 +21,26 @@ public class Driver12285 extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            left = -Range.clip(gamepad1.left_stick_y, -1, 1);
-            right = -Range.clip(-gamepad1.right_stick_y, -1, 1);
+            double left = Range.clip(gamepad1.left_stick_y, -1, 1);
+            double right = Range.clip(-gamepad1.right_stick_y, -1, 1);
 
             robot.getWheelLeft().setPower(left);
             robot.getWheelRight().setPower(right);
 
-            if (gamepad2.dpad_down) {  // out
-                robot.getLauncher1().setPower(-1.0);
-                robot.getLauncher2().setPower(1.0);
-
-                robot.getLift().setPower(1.0);
-                robot.getSweeper().setPower(1.0);
-            } else if (gamepad2.dpad_up) { // in
-                robot.getLauncher1().setPower(1.0);
-                robot.getLauncher2().setPower(-1.0);
-
+            if (gamepad2.dpad_down) {
                 robot.getLift().setPower(-1.0);
-                robot.getSweeper().setPower(-1.0);
+            } else if (gamepad2.dpad_up) {
+                robot.getLift().setPower(1.0);
             } else {
-                robot.getLauncher1().setPower(0.0);
-                robot.getLauncher2().setPower(0.0);
-
                 robot.getLift().setPower(0.0);
-                robot.getSweeper().setPower(0.0);
+            }
+
+            if (gamepad2.a) {
+                robot.getPaddle().setPower(-1.0);
+            } else if (gamepad2.y) {
+                robot.getPaddle().setPower(1.0);
+            } else {
+                robot.getPaddle().setPower(0.0);
             }
         }
     }

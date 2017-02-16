@@ -20,50 +20,44 @@ public class DriveAndShoot extends LinearOpMode {
 
         waitForStart();
 
-        double forwardSpeed = -0.5;
+        double forwardSpeed = 1.0;
 
         while (opModeIsActive() && runtime.seconds() < 1.8) {
-            robot.getWheelLeft().setPower(-forwardSpeed);
-            robot.getWheelRight().setPower(forwardSpeed);
+            robot.getWheelLeft().setPower(forwardSpeed);
+            robot.getWheelRight().setPower(-forwardSpeed);
         }
 
         while (opModeIsActive() && runtime.seconds() >= 1.8 && runtime.seconds() <= 6.8) {
             robot.getWheelLeft().setPower(0.0);
             robot.getWheelRight().setPower(0.0);
 
-            robot.getLauncher1().setPower(1.0);
-            robot.getLauncher2().setPower(-1.0);
-
-            robot.getLift().setPower(-1.0);
-            robot.getSweeper().setPower(-1.0);
+            robot.getPaddle().setPower(-1.0);
+            robot.getLift().setPower(1.0);
         }
 
         while (opModeIsActive() && runtime.seconds() > 6.8 && runtime.seconds() <= 8.0) {
             robot.getWheelLeft().setPower(-forwardSpeed);
             robot.getWheelRight().setPower(forwardSpeed);
 
-            robot.getLauncher1().setPower(0.0);
-            robot.getLauncher2().setPower(0.0);
-
+            robot.getPaddle().setPower(0.0);
             robot.getLift().setPower(0.0);
-            robot.getSweeper().setPower(0.0);
         }
 
         while (opModeIsActive() && runtime.seconds() > 8.3) {
             robot.getWheelLeft().setPower(0.0);
             robot.getWheelRight().setPower(0.0);
 
-            robot.getLauncher1().setPower(0.0);
-            robot.getLauncher2().setPower(0.0);
-
+            robot.getPaddle().setPower(0.0);
             robot.getLift().setPower(0.0);
-            robot.getSweeper().setPower(0.0);
 
             idle();
         }
 
-        robot.getWheelLeft().setPower(0);
-        robot.getWheelRight().setPower(0);
+        robot.getWheelLeft().setPower(0.0);
+        robot.getWheelRight().setPower(0.0);
+
+        robot.getPaddle().setPower(0.0);
+        robot.getLift().setPower(0.0);
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
