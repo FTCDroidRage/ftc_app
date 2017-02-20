@@ -26,13 +26,15 @@ public class Driver12285 extends LinearOpMode {
 
             robot.getWheelLeft().setPower(left);
             robot.getWheelRight().setPower(right);
+            robot.getLeftWheel().setPower(left);
+            robot.getRightWheel().setPower(right);
 
             if (gamepad2.dpad_down) {
                 robot.getLift().setPower(-1.0);
             } else if (gamepad2.dpad_up) {
                 robot.getLift().setPower(1.0);
-            } else {
                 robot.getLift().setPower(0.0);
+            } else {
             }
 
             if (gamepad2.a) {

@@ -17,6 +17,8 @@ public class Hardware12285 implements Hardware {
 
     private DcMotor wheelLeft;
     private DcMotor wheelRight;
+    private DcMotor leftWheel;
+    private DcMotor rightWheel;
 
     @Override
     public void init(HardwareMap hardwareMap) {
@@ -27,6 +29,8 @@ public class Hardware12285 implements Hardware {
 
         this.wheelLeft = hardwareMap.dcMotor.get("wheel left");
         this.wheelRight = hardwareMap.dcMotor.get("wheel right");
+        this.leftWheel = hardwareMap.dcMotor.get("left wheel");
+        this.rightWheel = hardwareMap.dcMotor.get("right wheel");
 
         lift.setPower(0.0);
         paddle.setPower(0.0);
@@ -39,6 +43,8 @@ public class Hardware12285 implements Hardware {
 
         wheelLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         wheelRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
     }
 
     @Override
@@ -75,5 +81,14 @@ public class Hardware12285 implements Hardware {
     public DcMotor getWheelRight() {
         return wheelRight;
     }
+
+    public DcMotor getLeftWheel() {
+        return leftWheel;
+    }
+
+    public DcMotor getRightWheel() {
+        return rightWheel;
+    }
+
 
 }
