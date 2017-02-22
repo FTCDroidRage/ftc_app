@@ -3,12 +3,12 @@ package org.firstinspires.ftc.teamcode.autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.hardware.Hardware12285;
+import org.firstinspires.ftc.teamcode.hardware.Hardware10863;
 
-// @com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Drive", group="Linear Opmode")
-public class Drive extends LinearOpMode {
+@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Simple Driving", group="Linear Opmode")
+public class Drive10863 extends LinearOpMode {
 
-    private Hardware12285 robot = new Hardware12285();
+    private Hardware10863 robot = new Hardware10863();
     private ElapsedTime runtime = new ElapsedTime();
 
     @Override
@@ -22,8 +22,12 @@ public class Drive extends LinearOpMode {
 
         double forwardSpeed = 1.0;
 
-        robot.getWheelLeft().setPower(forwardSpeed);
-        robot.getWheelRight().setPower(-forwardSpeed);
+        robot.getFrontWheelLeft().setPower(forwardSpeed);
+        robot.getFrontWheelRight().setPower(forwardSpeed);
+
+        robot.getBackWheelLeft().setPower(forwardSpeed);
+        robot.getBackWheelRight().setPower(forwardSpeed);
+
         runtime.reset();
 
         while (opModeIsActive() && (runtime.seconds() < 3.0)) {
@@ -32,8 +36,11 @@ public class Drive extends LinearOpMode {
             idle();
         }
 
-        robot.getWheelLeft().setPower(0);
-        robot.getWheelRight().setPower(0);
+        robot.getFrontWheelLeft().setPower(0.0);
+        robot.getFrontWheelRight().setPower(0.0);
+
+        robot.getBackWheelLeft().setPower(0.0);
+        robot.getBackWheelRight().setPower(0.0);
 
         telemetry.addData("Path", "Complete");
         telemetry.update();

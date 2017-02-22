@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.util.Range;
  */
 
 
-@TeleOp(name="hii", group="Linear Opmode")
+// @TeleOp(name="hii", group="Linear Opmode")
 public class JorgeScrimmage extends OpMode {
 
    /*

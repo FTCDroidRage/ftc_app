@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.hardware.Hardware12285;
 
-@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Drive and Shoot", group="Linear Opmode")
+// @com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Drive and Shoot", group="Linear Opmode")
 public class DriveAndShoot extends LinearOpMode {
 
     private Hardware12285 robot = new Hardware12285();

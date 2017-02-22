@@ -59,7 +59,7 @@ public class Hardware12285 implements Hardware {
 
     @Override
     public HardwareMap getHardwareMap() {
-        return null;
+        return hardwareMap;
     }
 
     public ElapsedTime getElapsedTime() {
@@ -89,6 +89,5 @@ public class Hardware12285 implements Hardware {
     public DcMotor getRightWheel() {
         return rightWheel;
     }
-
 
 }

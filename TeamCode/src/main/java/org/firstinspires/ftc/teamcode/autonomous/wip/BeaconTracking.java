@@ -13,7 +13,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.teamcode.hardware.Hardware12285;
 import org.firstinspires.ftc.teamcode.util.VuforiaUtil;
 
-@Autonomous(name="[WIP] Beacon Tracking", group="Linear Opmode")
+// @Autonomous(name="[WIP] Beacon Tracking", group="Linear Opmode")
 public class BeaconTracking extends LinearOpMode {
 
     private Hardware12285 robot;

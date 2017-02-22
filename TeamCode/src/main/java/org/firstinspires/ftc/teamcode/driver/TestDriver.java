@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.hardware.TestHardware;
 
-@TeleOp(name="POC: 10863 Driver", group="Linear Opmode")
+// @TeleOp(name="POC: 10863 Driver", group="Linear Opmode")
 public class TestDriver extends LinearOpMode {
 
     private TestHardware robot = new TestHardware();
