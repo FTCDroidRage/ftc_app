@@ -19,6 +19,9 @@ public class Hardware10863 implements Hardware {
     private DcMotor lift;
     private DcMotor flicker;
 
+    private double direction;
+    private double multi;
+
     @Override
     public void init(HardwareMap hardwareMap) {
         this.hardwareMap = hardwareMap;
@@ -46,6 +49,9 @@ public class Hardware10863 implements Hardware {
         this.backWheelRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         this.lift.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         this.flicker.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        this.direction = 1.0;
+        this.multi = 1.0;
     }
 
     @Override
@@ -91,4 +97,19 @@ public class Hardware10863 implements Hardware {
         return flicker;
     }
 
+    public double getDirection() {
+        return direction;
+    }
+
+    public void setDirection(double direction) {
+        this.direction = direction;
+    }
+
+    public double getMulti() {
+        return multi;
+    }
+
+    public void setMulti(double multi) {
+        this.multi = multi;
+    }
 }
