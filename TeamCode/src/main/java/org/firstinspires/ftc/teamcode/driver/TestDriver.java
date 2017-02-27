@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.driver;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.hardware.TestHardware;
 
@@ -21,6 +20,9 @@ public class TestDriver extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
+
+            telemetry.addData("normal Value:", robot.getOds1().getLightDetected() );
+
             if (robot.getOds1().getLightDetected() > 0.6) {
                 telemetry.addData("ODS 1:", "White Tape Detected");
             } else {

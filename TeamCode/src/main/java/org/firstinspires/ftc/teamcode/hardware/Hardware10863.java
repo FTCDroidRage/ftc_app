@@ -22,6 +22,7 @@ public class Hardware10863 implements Hardware {
     private DcMotor flicker;
 
     private OpticalDistanceSensor ods1;
+    private OpticalDistanceSensor ods2;
 
     private ColorSensor colorSensor;
 
@@ -42,10 +43,12 @@ public class Hardware10863 implements Hardware {
         this.flicker = hardwareMap.dcMotor.get("paddle");
 
         this.ods1 = hardwareMap.opticalDistanceSensor.get("ods1");
+        this.ods2 = hardwareMap.opticalDistanceSensor.get("ods2");
 
         this.colorSensor = hardwareMap.colorSensor.get("cs");
 
         this.ods1.enableLed(true);
+        this.ods2.enableLed(true);
         this.colorSensor.enableLed(true);
 
         this.frontWheelLeft.setPower(0.0);
@@ -112,6 +115,10 @@ public class Hardware10863 implements Hardware {
 
     public OpticalDistanceSensor getOds1() {
         return ods1;
+    }
+
+    public OpticalDistanceSensor getOds2() {
+        return ods2;
     }
 
     public ColorSensor getColorSensor() {

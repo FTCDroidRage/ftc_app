@@ -16,26 +16,25 @@ public class FollowWhiteTape extends LinearOpMode {
 
         waitForStart();
 
+        // ODS 1 = Right side
+        // ODS 2 = Left side
+
         while (opModeIsActive()) {
-            if (robot.getOds1().getLightDetected() > 0.6) {
-                robot.getFrontWheelLeft().setPower(0.3);
-                robot.getFrontWheelRight().setPower(-0.3);
-                robot.getBackWheelLeft().setPower(0.3);
-                robot.getBackWheelRight().setPower(-0.3);
-            } else {
-                if ((robot.getElapsedTime().seconds() % 2) == 0) {
-                    if (robot.getFrontWheelLeft().getPower() == -0.3 && robot.getFrontWheelRight().getPower() == -0.3) {
-                        robot.getFrontWheelLeft().setPower(0.3);
-                        robot.getFrontWheelRight().setPower(0.3);
-                        robot.getBackWheelLeft().setPower(0.3);
-                        robot.getBackWheelRight().setPower(0.3);
-                    } else if (robot.getFrontWheelLeft().getPower() == 0.3 && robot.getFrontWheelRight().getPower() == 0.3) {
-                        robot.getFrontWheelLeft().setPower(-0.3);
-                        robot.getFrontWheelRight().setPower(-0.3);
-                        robot.getBackWheelLeft().setPower(-0.3);
-                        robot.getBackWheelRight().setPower(-0.3);
-                    }
-                }
+            if (robot.getOds1().getLightDetected() > 0.6 && robot.getOds2().getLightDetected() <= 0.6) {
+                robot.getFrontWheelLeft().setPower(-0.1);
+                robot.getFrontWheelRight().setPower(-0.1);
+                robot.getBackWheelLeft().setPower(-0.1);
+                robot.getBackWheelRight().setPower(-0.1);
+            } else if (robot.getOds2().getLightDetected() > 0.6 && robot.getOds1().getLightDetected() <= 0.6) {
+                robot.getFrontWheelLeft().setPower(0.1);
+                robot.getFrontWheelRight().setPower(0.1);
+                robot.getBackWheelLeft().setPower(0.1);
+                robot.getBackWheelRight().setPower(0.1);
+            } else if (robot.getOds2().getLightDetected() <= 0.6 && robot.getOds1().getLightDetected() <= 0.6) {
+                robot.getFrontWheelLeft().setPower(0.2);
+                robot.getFrontWheelRight().setPower(-0.2);
+                robot.getBackWheelLeft().setPower(0.2);
+                robot.getBackWheelRight().setPower(-0.2);
             }
         }
     }
