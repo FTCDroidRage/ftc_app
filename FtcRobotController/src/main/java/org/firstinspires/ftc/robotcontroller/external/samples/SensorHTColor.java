@@ -62,37 +62,11 @@ public class SensorHTColor extends LinearOpMode {
 
     ColorSensor colorSensor;  // Hardware Device Object
 
-
-<<<<<<< HEAD
     @Override
     public void runOpMode() throws InterruptedException {
 
         // hsvValues is an array that will hold the hue, saturation, and value information.
         float hsvValues[] = {0F, 0F, 0F};
-=======
-  @Override
-  public void runOpMode() throws InterruptedException {
-
-    // hsvValues is an array that will hold the hue, saturation, and value information.
-    float hsvValues[] = {0F,0F,0F};
-
-    // values is a reference to the hsvValues array.
-    final float values[] = hsvValues;
-
-    // get a reference to the RelativeLayout so we can change the background
-    // color of the Robot Controller app to match the hue detected by the RGB sensor.
-    final View relativeLayout = ((Activity) hardwareMap.appContext).findViewById(R.id.RelativeLayout);
-
-    // bPrevState and bCurrState represent the previous and current state of the button.
-    boolean bPrevState = false;
-    boolean bCurrState = false;
-
-    // bLedOn represents the state of the LED.
-    boolean bLedOn = true;
-
-    // get a reference to our ColorSensor object.
-    colorSensor = hardwareMap.colorSensor.get("color sensor");
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
 
         // values is a reference to the hsvValues array.
         final float values[] = hsvValues;
@@ -111,10 +85,10 @@ public class SensorHTColor extends LinearOpMode {
         // get a reference to our ColorSensor object.
         colorSensor = hardwareMap.colorSensor.get("color sensor");
 
+
         // turn the LED on in the beginning, just so user will know that the sensor is active.
         colorSensor.enableLed(bLedOn);
 
-<<<<<<< HEAD
         // wait for the start button to be pressed.
         waitForStart();
 
@@ -160,9 +134,7 @@ public class SensorHTColor extends LinearOpMode {
             telemetry.update();
             idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
         }
-=======
-      telemetry.update();
-      idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
+        telemetry.update();
+        idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
     }
 }

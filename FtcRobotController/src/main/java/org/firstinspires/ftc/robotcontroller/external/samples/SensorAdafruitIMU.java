@@ -75,12 +75,8 @@ public class SensorAdafruitIMU extends LinearOpMode {
     // Main logic
     //----------------------------------------------------------------------------------------------
 
-<<<<<<< HEAD
     @Override
     public void runOpMode() throws InterruptedException {
-=======
-    @Override public void runOpMode() throws InterruptedException {
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
 
         // Set up the parameters with which we will use our IMU. Note that integration
         // algorithm here just reports accelerations to the logcat log; it doesn't actually

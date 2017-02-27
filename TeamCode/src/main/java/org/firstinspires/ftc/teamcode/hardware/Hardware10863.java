@@ -1,7 +1,9 @@
 package org.firstinspires.ftc.teamcode.hardware;
 
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.util.Hardware;
@@ -19,6 +21,10 @@ public class Hardware10863 implements Hardware {
     private DcMotor lift;
     private DcMotor flicker;
 
+    private OpticalDistanceSensor ods1;
+
+    private ColorSensor colorSensor;
+
     private double direction;
     private double multi;
 
@@ -34,6 +40,13 @@ public class Hardware10863 implements Hardware {
 
         this.lift = hardwareMap.dcMotor.get("lift");
         this.flicker = hardwareMap.dcMotor.get("paddle");
+
+        this.ods1 = hardwareMap.opticalDistanceSensor.get("ods1");
+
+        this.colorSensor = hardwareMap.colorSensor.get("cs");
+
+        this.ods1.enableLed(true);
+        this.colorSensor.enableLed(true);
 
         this.frontWheelLeft.setPower(0.0);
         this.frontWheelRight.setPower(0.0);
@@ -95,6 +108,14 @@ public class Hardware10863 implements Hardware {
 
     public DcMotor getFlicker() {
         return flicker;
+    }
+
+    public OpticalDistanceSensor getOds1() {
+        return ods1;
+    }
+
+    public ColorSensor getColorSensor() {
+        return colorSensor;
     }
 
     public double getDirection() {

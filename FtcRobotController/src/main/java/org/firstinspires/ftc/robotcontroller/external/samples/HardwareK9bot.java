@@ -14,13 +14,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * This hardware class assumes the following device names have been configured on the robot:
  * Note:  All names are lower case and some have single spaces between words.
  * <p>
- * <<<<<<< HEAD
  * Motor channel:  Left  drive motor:        "left motor"
  * Motor channel:  Right drive motor:        "right motor"
- * =======
- * Motor channel:  Left  drive motor:        "left_drive"
- * Motor channel:  Right drive motor:        "right_drive"
- * >>>>>>> upstream/master
  * Servo channel:  Servo to raise/lower arm: "arm"
  * Servo channel:  Servo to open/close claw: "claw"
  * <p>
@@ -55,16 +50,9 @@ public class HardwareK9bot {
         // save reference to HW Map
         hwMap = ahwMap;
 
-<<<<<<< HEAD
         // Define and Initialize Motors
         leftMotor = hwMap.dcMotor.get("left motor");
         rightMotor = hwMap.dcMotor.get("right motor");
-=======
-        leftMotor   = hwMap.dcMotor.get("left motor");
-        rightMotor  = hwMap.dcMotor.get("right motor");
-        leftMotor   = hwMap.dcMotor.get("left_drive");
-        rightMotor  = hwMap.dcMotor.get("right_drive");
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
         leftMotor.setDirection(DcMotor.Direction.REVERSE);
 
         // Set all motors to zero power
@@ -91,14 +79,8 @@ public class HardwareK9bot {
      * @param periodMs Length of wait cycle in mSec.
      * @throws InterruptedException
      */
-<<<<<<< HEAD
     public void waitForTick(long periodMs) throws InterruptedException {
         long remaining = periodMs - (long) period.milliseconds();
-=======
-    public void waitForTick(long periodMs)  throws InterruptedException {
-
-        long  remaining = periodMs - (long)period.milliseconds();
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
 
         // sleep for the remaining portion of the regular cycle period.
         if (remaining > 0)

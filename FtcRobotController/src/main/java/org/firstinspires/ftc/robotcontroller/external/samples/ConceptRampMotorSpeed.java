@@ -9,11 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  * This OpMode ramps a single motor speed up and down repeatedly until Stop is pressed.
  * The code is structured as a LinearOpMode
  *
-<<<<<<< HEAD
  * This code assumes a DC motor configured with the name "left motor" as is found on a pushbot.
-=======
- * This code assumes a DC motor configured with the name "left_drive" as is found on a pushbot.
->>>>>>> upstream/master
  *
  * INCREMENT sets how much to increase/decrease the power each cycle
  * CYCLE_MS sets the update period.
@@ -42,13 +38,6 @@ public class ConceptRampMotorSpeed extends LinearOpMode {
         // Connect to motor (Assume standard left wheel)
         // Change the text in quotes to match any motor name on your robot.
         motor = hardwareMap.dcMotor.get("left motor");
-<<<<<<< HEAD
-=======
-
-        // Connect to motor (Assume standard left wheel)
-        // Change the text in quotes to match any motor name on your robot.
-        motor = hardwareMap.dcMotor.get("left_drive");
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
 
         // Wait for the start button
         telemetry.addData(">", "Press Start to run Motors." );

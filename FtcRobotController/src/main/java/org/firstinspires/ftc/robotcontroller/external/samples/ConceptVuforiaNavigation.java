@@ -98,12 +98,8 @@ public class ConceptVuforiaNavigation extends LinearOpMode {
      */
     VuforiaLocalizer vuforia;
 
-<<<<<<< HEAD
     @Override
     public void runOpMode() throws InterruptedException {
-=======
-    @Override public void runOpMode() throws InterruptedException {
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
         /**
          * Start up Vuforia, telling it the id of the view that we wish to use as the parent for
          * the camera monitor feedback; if no camera monitor feedback is desired, use the parameterless

@@ -50,7 +50,6 @@ public class SensorMROpticalDistance extends LinearOpMode {
 
     OpticalDistanceSensor odsSensor;  // Hardware Device Object
 
-<<<<<<< HEAD
     @Override
     public void runOpMode() throws InterruptedException {
 
@@ -58,16 +57,10 @@ public class SensorMROpticalDistance extends LinearOpMode {
 
         // wait for the start button to be pressed.
         waitForStart();
-=======
-  @Override
-  public void runOpMode() throws InterruptedException {
 
-    // get a reference to our Light Sensor object.
-    odsSensor = hardwareMap.opticalDistanceSensor.get("ods");
+        // get a reference to our Light Sensor object.
+        odsSensor = hardwareMap.opticalDistanceSensor.get("ods");
 
-    // get a reference to our Light Sensor object.
-    odsSensor = hardwareMap.opticalDistanceSensor.get("sensor_ods");
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
 
         // while the op mode is active, loop and read the light levels.
         // Note we use opModeIsActive() as our loop condition because it is an interruptible method.
@@ -77,17 +70,8 @@ public class SensorMROpticalDistance extends LinearOpMode {
             telemetry.addData("Raw", odsSensor.getRawLightDetected());
             telemetry.addData("Normal", odsSensor.getLightDetected());
 
-<<<<<<< HEAD
             telemetry.update();
             idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
         }
-=======
-      // send the info back to driver station using telemetry function.
-      telemetry.addData("Raw",    odsSensor.getRawLightDetected());
-      telemetry.addData("Normal", odsSensor.getLightDetected());
-
-      telemetry.update();
-      idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
     }
 }

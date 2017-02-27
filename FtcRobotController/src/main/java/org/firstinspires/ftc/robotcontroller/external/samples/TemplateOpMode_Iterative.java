@@ -64,11 +64,6 @@ public class TemplateOpMode_Iterative extends OpMode {
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
 
-<<<<<<< HEAD
-=======
-    // private DcMotor leftMotor = null;
-    // private DcMotor rightMotor = null;
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
     private DcMotor leftMotor = null;
     private DcMotor rightMotor = null;
 
@@ -85,11 +80,6 @@ public class TemplateOpMode_Iterative extends OpMode {
          */
         // leftMotor  = hardwareMap.dcMotor.get("left motor");
         // rightMotor = hardwareMap.dcMotor.get("right motor");
-<<<<<<< HEAD
-=======
-        // leftMotor  = hardwareMap.dcMotor.get("left_drive");
-        // rightMotor = hardwareMap.dcMotor.get("right_drive");
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
 
         // eg: Set the drive motor directions:
         // Reverse the motor that runs backwards when connected directly to the battery

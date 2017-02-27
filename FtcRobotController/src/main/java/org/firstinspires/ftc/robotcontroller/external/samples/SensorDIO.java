@@ -65,14 +65,8 @@ public class SensorDIO extends LinearOpMode {
     final int BLUE_LED_CHANNEL = 0;
     final int RED_LED_CHANNEL = 1;
 
-<<<<<<< HEAD
     @Override
     public void runOpMode() throws InterruptedException {
-=======
-  @Override
-  public void runOpMode() throws InterruptedException {
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
-
         boolean inputPin;             // Input State
         boolean outputPin;            // Output State
         DeviceInterfaceModule dim;                  // Device Object

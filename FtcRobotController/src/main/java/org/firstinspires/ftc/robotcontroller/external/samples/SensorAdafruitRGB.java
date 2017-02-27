@@ -82,14 +82,8 @@ public class SensorAdafruitRGB extends LinearOpMode {
     // digital port 5 (zero indexed).
     static final int LED_CHANNEL = 5;
 
-<<<<<<< HEAD
     @Override
     public void runOpMode() throws InterruptedException {
-=======
-  @Override
-  public void runOpMode() throws InterruptedException {
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
-
         // hsvValues is an array that will hold the hue, saturation, and value information.
         float hsvValues[] = {0F, 0F, 0F};
 
@@ -114,37 +108,12 @@ public class SensorAdafruitRGB extends LinearOpMode {
         // remember, the Adafruit sensor is actually two devices.
         // It's an I2C sensor and it's also an LED that can be turned on or off.
         cdim.setDigitalChannelMode(LED_CHANNEL, DigitalChannelController.Mode.OUTPUT);
-
-<<<<<<< HEAD
         // get a reference to our ColorSensor object.
         sensorRGB = hardwareMap.colorSensor.get("color");
 
         // turn the LED on in the beginning, just so user will know that the sensor is active.
-=======
-    // get a reference to our ColorSensor object.
-    sensorRGB = hardwareMap.colorSensor.get("color");
-    // turn the LED on in the beginning, just so user will know that the sensor is active.
-    cdim.setDigitalChannelState(LED_CHANNEL, bLedOn);
-
-    // wait for the start button to be pressed.
-    waitForStart();
-
-    // loop and read the RGB data.
-    // Note we use opModeIsActive() as our loop condition because it is an interruptible method.
-    while (opModeIsActive())  {
-
-      // check the status of the x button on gamepad.
-      bCurrState = gamepad1.x;
-
-      // check for button-press state transitions.
-      if ((bCurrState == true) && (bCurrState != bPrevState))  {
-
-        // button is transitioning to a pressed state. Toggle the LED.
-        bLedOn = !bLedOn;
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
         cdim.setDigitalChannelState(LED_CHANNEL, bLedOn);
 
-<<<<<<< HEAD
         // wait for the start button to be pressed.
         waitForStart();
 
@@ -161,37 +130,54 @@ public class SensorAdafruitRGB extends LinearOpMode {
                 // button is transitioning to a pressed state. Toggle the LED.
                 bLedOn = !bLedOn;
                 cdim.setDigitalChannelState(LED_CHANNEL, bLedOn);
-            }
 
-            // update previous state variable.
-            bPrevState = bCurrState;
+                // wait for the start button to be pressed.
+                waitForStart();
 
-            // convert the RGB values to HSV values.
-            Color.RGBToHSV((sensorRGB.red() * 255) / 800, (sensorRGB.green() * 255) / 800, (sensorRGB.blue() * 255) / 800, hsvValues);
+                // loop and read the RGB data.
+                // Note we use opModeIsActive() as our loop condition because it is an interruptible method.
+                while (opModeIsActive()) {
 
-            // send the info back to driver station using telemetry function.
-            telemetry.addData("LED", bLedOn ? "On" : "Off");
-            telemetry.addData("Clear", sensorRGB.alpha());
-            telemetry.addData("Red  ", sensorRGB.red());
-            telemetry.addData("Green", sensorRGB.green());
-            telemetry.addData("Blue ", sensorRGB.blue());
-            telemetry.addData("Hue", hsvValues[0]);
+                    // check the status of the x button on gamepad.
+                    bCurrState = gamepad1.x;
 
-            // change the background color to match the color detected by the RGB sensor.
-            // pass a reference to the hue, saturation, and value array as an argument
-            // to the HSVToColor method.
-            relativeLayout.post(new Runnable() {
-                public void run() {
-                    relativeLayout.setBackgroundColor(Color.HSVToColor(0xff, values));
+                    // check for button-press state transitions.
+                    if ((bCurrState == true) && (bCurrState != bPrevState)) {
+
+                        // button is transitioning to a pressed state. Toggle the LED.
+                        bLedOn = !bLedOn;
+                        cdim.setDigitalChannelState(LED_CHANNEL, bLedOn);
+                    }
+
+                    // update previous state variable.
+                    bPrevState = bCurrState;
+
+                    // convert the RGB values to HSV values.
+                    Color.RGBToHSV((sensorRGB.red() * 255) / 800, (sensorRGB.green() * 255) / 800, (sensorRGB.blue() * 255) / 800, hsvValues);
+
+                    // send the info back to driver station using telemetry function.
+                    telemetry.addData("LED", bLedOn ? "On" : "Off");
+                    telemetry.addData("Clear", sensorRGB.alpha());
+                    telemetry.addData("Red  ", sensorRGB.red());
+                    telemetry.addData("Green", sensorRGB.green());
+                    telemetry.addData("Blue ", sensorRGB.blue());
+                    telemetry.addData("Hue", hsvValues[0]);
+
+                    // change the background color to match the color detected by the RGB sensor.
+                    // pass a reference to the hue, saturation, and value array as an argument
+                    // to the HSVToColor method.
+                    relativeLayout.post(new Runnable() {
+                        public void run() {
+                            relativeLayout.setBackgroundColor(Color.HSVToColor(0xff, values));
+                        }
+                    });
+
+                    telemetry.update();
+                    idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
                 }
-            });
-
-            telemetry.update();
-            idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
+                telemetry.update();
+                idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
+            }
         }
-=======
-      telemetry.update();
-      idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
     }
 }

@@ -53,13 +53,9 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 @Autonomous(name = "Concept: Telemetry", group = "Concept")
 @Disabled
 public class ConceptTelemetry extends LinearOpMode {
-<<<<<<< HEAD
     /**
      * keeps track of the line of the poem which is to be emitted next
      */
-=======
-    /** keeps track of the line of the poem which is to be emitted next */
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
     int poemLine = 0;
 
     /**
@@ -67,35 +63,6 @@ public class ConceptTelemetry extends LinearOpMode {
      */
     ElapsedTime poemElapsed = new ElapsedTime();
 
-<<<<<<< HEAD
-    static final String[] poem = new String[]{
-
-            "Mary had a little lamb,",
-            "His fleece was white as snow,",
-            "And everywhere that Mary went,",
-            "The lamb was sure to go.",
-            "",
-            "He followed her to school one day,",
-            "Which was against the rule,",
-            "It made the children laugh and play",
-            "To see a lamb at school.",
-            "",
-            "And so the teacher turned it out,",
-            "But still it lingered near,",
-            "And waited patiently about,",
-            "Till Mary did appear.",
-            "",
-            "\"Why does the lamb love Mary so?\"",
-            "The eager children cry.",
-            "\"Why, Mary loves the lamb, you know,\"",
-            "The teacher did reply.",
-            "",
-            ""
-    };
-
-    @Override
-    public void runOpMode() throws InterruptedException {
-=======
     static final String[] poem = new String[] {
 
         "Mary had a little lamb,",
@@ -122,7 +89,6 @@ public class ConceptTelemetry extends LinearOpMode {
     };
 
     @Override public void runOpMode() throws InterruptedException {
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
         /* we keep track of how long it's been since the OpMode was started, just
          * to have some interesting data to show */
         ElapsedTime opmodeRunTime = new ElapsedTime();
@@ -143,10 +109,6 @@ public class ConceptTelemetry extends LinearOpMode {
             telemetry.addData("time", "%.1f seconds", opmodeRunTime.seconds());
             telemetry.update();
             idle();
-<<<<<<< HEAD
-=======
-            }
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
         }
 
         // Ok, we've been given the ok to go
@@ -160,7 +122,6 @@ public class ConceptTelemetry extends LinearOpMode {
          *
          * @see Telemetry#getMsTransmissionInterval()
          */
-<<<<<<< HEAD
         telemetry.addData("voltage", "%.1f volts", new Func<Double>() {
             @Override
             public Double value() {
@@ -222,6 +183,4 @@ public class ConceptTelemetry extends LinearOpMode {
         }
         return result;
     }
-=======
->>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
 }
