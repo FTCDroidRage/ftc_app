@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.hardware.Hardware10863;
 
-@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Drive and Shoot", group="Linear Opmode")
-public class DriveAndShoot10863 extends LinearOpMode {
+@com.qualcomm.robotcore.eventloop.opmode.Autonomous(name="Drive and Shoot - No Cap", group="Linear Opmode")
+public class DriveAndShootSmall10863 extends LinearOpMode {
 
     private Hardware10863 robot = new Hardware10863();
     private ElapsedTime runtime = new ElapsedTime();
@@ -52,18 +52,7 @@ public class DriveAndShoot10863 extends LinearOpMode {
             robot.getFlicker().setPower(-1.0);
         }
 
-        while (opModeIsActive() && runtime.seconds() > 16.0 && runtime.seconds() <= 17.8) {
-            robot.getFrontWheelLeft().setPower(forwardSpeed);
-            robot.getFrontWheelRight().setPower(-forwardSpeed);
-
-            robot.getBackWheelLeft().setPower(forwardSpeed);
-            robot.getBackWheelRight().setPower(-forwardSpeed);
-
-            robot.getLift().setPower(0.0);
-            robot.getFlicker().setPower(0.0);
-        }
-
-        while (opModeIsActive() && runtime.seconds() > 17.8) {
+        while (opModeIsActive() && runtime.seconds() > 16.0) {
             robot.getFrontWheelLeft().setPower(0.0);
             robot.getFrontWheelRight().setPower(0.0);
 

@@ -60,8 +60,13 @@ public class SensorLEGOLight extends LinearOpMode {
 
     LightSensor lightSensor;  // Hardware Device Object
 
+<<<<<<< HEAD
     @Override
     public void runOpMode() throws InterruptedException {
+=======
+  @Override
+  public void runOpMode() throws InterruptedException {
+>>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
 
         // bPrevState and bCurrState represent the previous and current state of the button.
         boolean bPrevState = false;
@@ -70,8 +75,13 @@ public class SensorLEGOLight extends LinearOpMode {
         // bLedOn represents the state of the LED.
         boolean bLedOn = true;
 
+<<<<<<< HEAD
         // get a reference to our Light Sensor object.
         lightSensor = hardwareMap.lightSensor.get("light sensor");
+=======
+    // get a reference to our Light Sensor object.
+    lightSensor = hardwareMap.lightSensor.get("light sensor");
+>>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
 
         // Set the LED state in the beginning.
         lightSensor.enableLed(bLedOn);
@@ -102,8 +112,13 @@ public class SensorLEGOLight extends LinearOpMode {
             telemetry.addData("Raw", lightSensor.getRawLightDetected());
             telemetry.addData("Normal", lightSensor.getLightDetected());
 
+<<<<<<< HEAD
             telemetry.update();
             idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
         }
+=======
+      telemetry.update();
+      idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
+>>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
     }
 }

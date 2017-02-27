@@ -64,8 +64,14 @@ public class TemplateOpMode_Linear extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+<<<<<<< HEAD
         DcMotor leftMotor = null;
         DcMotor rightMotor = null;
+=======
+    DcMotor leftMotor = null;
+    DcMotor rightMotor = null;
+
+>>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
@@ -75,7 +81,12 @@ public class TemplateOpMode_Linear extends LinearOpMode {
          */
         // leftMotor  = hardwareMap.dcMotor.get("left motor");
         // rightMotor = hardwareMap.dcMotor.get("right motor");
+<<<<<<< HEAD
 
+=======
+        // leftMotor  = hardwareMap.dcMotor.get("left_drive");
+        // rightMotor = hardwareMap.dcMotor.get("right_drive");
+>>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
         // eg: Set the drive motor directions:
         // "Reverse" the motor that runs backwards when connected directly to the battery
         // leftMotor.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors

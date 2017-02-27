@@ -42,6 +42,13 @@ public class ConceptRampMotorSpeed extends LinearOpMode {
         // Connect to motor (Assume standard left wheel)
         // Change the text in quotes to match any motor name on your robot.
         motor = hardwareMap.dcMotor.get("left motor");
+<<<<<<< HEAD
+=======
+
+        // Connect to motor (Assume standard left wheel)
+        // Change the text in quotes to match any motor name on your robot.
+        motor = hardwareMap.dcMotor.get("left_drive");
+>>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
 
         // Wait for the start button
         telemetry.addData(">", "Press Start to run Motors." );

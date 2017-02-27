@@ -56,6 +56,7 @@ import com.qualcomm.robotcore.hardware.IrSeekerSensor;
 @Disabled
 public class SensorMRIrSeeker extends LinearOpMode {
 
+<<<<<<< HEAD
     @Override
     public void runOpMode() throws InterruptedException {
 
@@ -82,5 +83,35 @@ public class SensorMRIrSeeker extends LinearOpMode {
             telemetry.update();
             idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
         }
+=======
+  @Override
+  public void runOpMode() throws InterruptedException {
+
+    IrSeekerSensor irSeeker;    // Hardware Device Object
+
+    // get a reference to our GyroSensor object.
+    irSeeker = hardwareMap.irSeekerSensor.get("seeker");
+
+    // wait for the start button to be pressed.
+    waitForStart();
+
+    while (opModeIsActive())  {
+
+      // Ensure we have a IR signal
+      if (irSeeker.signalDetected())
+      {
+        // Display angle and strength
+        telemetry.addData("Angle",    irSeeker.getAngle());
+        telemetry.addData("Strength", irSeeker.getStrength());
+      }
+      else
+      {
+        // Display loss of signal
+        telemetry.addData("Seeker", "Signal Lost");
+      }
+
+      telemetry.update();
+      idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
+>>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
     }
 }

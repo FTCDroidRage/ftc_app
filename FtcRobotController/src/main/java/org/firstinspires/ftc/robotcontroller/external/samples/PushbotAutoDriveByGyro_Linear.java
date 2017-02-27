@@ -116,7 +116,11 @@ public class PushbotAutoDriveByGyro_Linear extends LinearOpMode {
         gyro.calibrate();
 
         // make sure the gyro is calibrated before continuing
+<<<<<<< HEAD
         while (gyro.isCalibrating()) {
+=======
+        while (gyro.isCalibrating())  {
+>>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
             Thread.sleep(50);
             idle();
         }
@@ -153,6 +157,7 @@ public class PushbotAutoDriveByGyro_Linear extends LinearOpMode {
     }
 
 
+<<<<<<< HEAD
     /**
      * Method to drive on a fixed compass bearing (angle), based on encoder counts.
      * Move will stop if either of these conditions occur:
@@ -176,6 +181,32 @@ public class PushbotAutoDriveByGyro_Linear extends LinearOpMode {
         double steer;
         double leftSpeed;
         double rightSpeed;
+=======
+   /**
+    *  Method to drive on a fixed compass bearing (angle), based on encoder counts.
+    *  Move will stop if either of these conditions occur:
+    *  1) Move gets to the desired position
+    *  2) Driver stops the opmode running.
+    *
+    * @param speed      Target speed for forward motion.  Should allow for _/- variance for adjusting heading
+    * @param distance   Distance (in inches) to move from current position.  Negative distance means move backwards.
+    * @param angle      Absolute Angle (in Degrees) relative to last gyro reset.
+    *                   0 = fwd. +ve is CCW from fwd. -ve is CW from forward.
+    *                   If a relative angle is required, add/subtract from current heading.
+    */
+    public void gyroDrive ( double speed,
+                            double distance,
+                            double angle) throws InterruptedException {
+
+        int     newLeftTarget;
+        int     newRightTarget;
+        int     moveCounts;
+        double  max;
+        double  error;
+        double  steer;
+        double  leftSpeed;
+        double  rightSpeed;
+>>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
 
         // Ensure that the opmode is still active
         if (opModeIsActive()) {
@@ -257,8 +288,13 @@ public class PushbotAutoDriveByGyro_Linear extends LinearOpMode {
      *              <<<<<<< HEAD
      * @throws InterruptedException
      */
+<<<<<<< HEAD
     public void gyroTurn(double speed, double angle)
             throws InterruptedException {
+=======
+    public void gyroTurn (  double speed, double angle)
+                              throws InterruptedException {
+>>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
 
         // keep looping while we are still active, and not on heading.
         while (opModeIsActive() && !onHeading(speed, angle, P_TURN_COEFF)) {
@@ -280,8 +316,13 @@ public class PushbotAutoDriveByGyro_Linear extends LinearOpMode {
      *                 <<<<<<< HEAD
      * @throws InterruptedException
      */
+<<<<<<< HEAD
     public void gyroHold(double speed, double angle, double holdTime)
             throws InterruptedException {
+=======
+    public void gyroHold( double speed, double angle, double holdTime)
+                            throws InterruptedException {
+>>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
 
         ElapsedTime holdTimer = new ElapsedTime();
 

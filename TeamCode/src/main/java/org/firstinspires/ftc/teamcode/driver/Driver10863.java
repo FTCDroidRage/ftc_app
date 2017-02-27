@@ -22,7 +22,7 @@ public class Driver10863 extends LinearOpMode {
 
         while (opModeIsActive()) {
             double left = Range.clip(gamepad1.left_stick_y, -1, 1) * robot.getDirection() * robot.getMulti();
-            double right = Range.clip(gamepad1.right_stick_y, -1, 1) * robot.getDirection() * robot.getMulti();
+            double right = Range.clip(-gamepad1.right_stick_y, -1, 1) * robot.getDirection() * robot.getMulti();
 
             robot.getFrontWheelLeft().setPower(left);
             robot.getFrontWheelRight().setPower(right);
@@ -30,9 +30,9 @@ public class Driver10863 extends LinearOpMode {
             robot.getBackWheelRight().setPower(right);
 
             if (gamepad2.dpad_down) {
-                robot.getLift().setPower(-1.0);
-            } else if (gamepad2.dpad_up) {
                 robot.getLift().setPower(1.0);
+            } else if (gamepad2.dpad_up) {
+                robot.getLift().setPower(-1.0);
             } else {
                 robot.getLift().setPower(0.0);
             }

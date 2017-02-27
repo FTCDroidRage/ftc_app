@@ -61,8 +61,13 @@ public class SensorMRColor extends LinearOpMode {
     ColorSensor colorSensor;    // Hardware Device Object
 
 
+<<<<<<< HEAD
     @Override
     public void runOpMode() throws InterruptedException {
+=======
+  @Override
+  public void runOpMode() throws InterruptedException {
+>>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
 
         // hsvValues is an array that will hold the hue, saturation, and value information.
         float hsvValues[] = {0F, 0F, 0F};
@@ -81,12 +86,18 @@ public class SensorMRColor extends LinearOpMode {
         // bLedOn represents the state of the LED.
         boolean bLedOn = true;
 
+<<<<<<< HEAD
         // get a reference to our ColorSensor object.
         colorSensor = hardwareMap.colorSensor.get("color sensor");
+=======
+    // get a reference to our ColorSensor object.
+    colorSensor = hardwareMap.colorSensor.get("color sensor");
+>>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
 
         // Set the LED in the beginning
         colorSensor.enableLed(bLedOn);
 
+<<<<<<< HEAD
         // wait for the start button to be pressed.
         waitForStart();
 
@@ -131,5 +142,9 @@ public class SensorMRColor extends LinearOpMode {
             telemetry.update();
             idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
         }
+=======
+      telemetry.update();
+      idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
+>>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
     }
 }

@@ -83,7 +83,10 @@ public class PushbotAutoDriveByEncoder_Linear extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
         /*
          * Initialize the drive system variables.
          * The init() method of the hardware class does all the work here
@@ -167,6 +170,10 @@ public class PushbotAutoDriveByEncoder_Linear extends LinearOpMode {
                         robot.leftMotor.getCurrentPosition(),
                         robot.rightMotor.getCurrentPosition());
                 telemetry.update();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
                 // Allow time for other processes to run.
                 idle();
             }

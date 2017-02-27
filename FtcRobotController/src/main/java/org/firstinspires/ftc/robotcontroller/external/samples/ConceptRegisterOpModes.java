@@ -87,6 +87,13 @@ public class ConceptRegisterOpModes
 
     // Sensor Samples
     // manager.register("AdaFruit Color",         SensorAdafruitRGB.class);
+<<<<<<< HEAD
+=======
+    // manager.register("AdaFruit IMU",           SensorAdafruitIMU.class);
+    // manager.register("AdaFruit IMU Cal",       SensorAdafruitIMUCalibration.class);
+    // manager.register("AdaFruit Color",         SensorAdafruitRGB.class);
+    // manager.register("DIM DIO",                SensorDIO.class);
+>>>>>>> 9c684edba151063b6e8dcd3f9d98c1e7e19012fe
     // manager.register("HT Color",               SensorHTColor.class);
     // manager.register("LEGO Light",             SensorLEGOLight.class);
     // manager.register("LEGO Touch",             SensorLEGOTouch.class);
