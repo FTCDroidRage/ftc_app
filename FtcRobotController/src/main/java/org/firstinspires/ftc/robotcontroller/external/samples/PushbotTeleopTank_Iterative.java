@@ -43,27 +43,27 @@ import com.qualcomm.robotcore.util.Range;
 /**
  * This file provides basic Telop driving for a Pushbot robot.
  * The code is structured as an Iterative OpMode
- *
+ * <p>
  * This OpMode uses the common Pushbot hardware class to define the devices on the robot.
  * All device access is managed through the HardwarePushbot class.
- *
+ * <p>
  * This particular OpMode executes a basic Tank Drive Teleop for a PushBot
  * It raises and lowers the claw using the Gampad Y and A buttons respectively.
  * It also opens and closes the claws slowly using the left and right Bumper buttons.
- *
+ * <p>
  * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Pushbot: Teleop Tank", group="Pushbot")
+@TeleOp(name = "Pushbot: Teleop Tank", group = "Pushbot")
 @Disabled
-public class PushbotTeleopTank_Iterative extends OpMode{
+public class PushbotTeleopTank_Iterative extends OpMode {
 
     /* Declare OpMode members. */
-    HardwarePushbot robot       = new HardwarePushbot(); // use the class created to define a Pushbot's hardware
-                                                         // could also use HardwarePushbotMatrix class.
-    double          clawOffset  = 0.0 ;                  // Servo mid position
-    final double    CLAW_SPEED  = 0.02 ;                 // sets rate to move servo
+    HardwarePushbot robot = new HardwarePushbot(); // use the class created to define a Pushbot's hardware
+    // could also use HardwarePushbotMatrix class.
+    double clawOffset = 0.0;                  // Servo mid position
+    final double CLAW_SPEED = 0.02;                 // sets rate to move servo
 
 
     /*
@@ -78,10 +78,7 @@ public class PushbotTeleopTank_Iterative extends OpMode{
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Say", "Hello Driver");    //
-<<<<<<< HEAD
         updateTelemetry(telemetry);
-=======
->>>>>>> upstream/master
     }
 
     /*
@@ -132,13 +129,10 @@ public class PushbotTeleopTank_Iterative extends OpMode{
             robot.armMotor.setPower(0.0);
 
         // Send telemetry message to signify robot running;
-        telemetry.addData("claw",  "Offset = %.2f", clawOffset);
-        telemetry.addData("left",  "%.2f", left);
+        telemetry.addData("claw", "Offset = %.2f", clawOffset);
+        telemetry.addData("left", "%.2f", left);
         telemetry.addData("right", "%.2f", right);
-<<<<<<< HEAD
         updateTelemetry(telemetry);
-=======
->>>>>>> upstream/master
     }
 
     /*

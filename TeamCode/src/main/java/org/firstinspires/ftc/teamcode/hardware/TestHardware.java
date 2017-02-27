@@ -1,7 +1,9 @@
 package org.firstinspires.ftc.teamcode.hardware;
 
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.OpticalDistanceSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.util.Hardware;
@@ -11,34 +13,24 @@ public class TestHardware implements Hardware {
     private ElapsedTime elapsedTime;
     private HardwareMap robot;
 
-    private DcMotor leftWheel;
-    private DcMotor rightWheel;
+    private OpticalDistanceSensor ods1;
+    private OpticalDistanceSensor ods2;
 
-    private DcMotor leftLaunch;
-    private DcMotor rightLaunch;
+    private ColorSensor colorSensor;
 
     @Override
     public void init(HardwareMap hardwareMap) {
         this.elapsedTime = new ElapsedTime();
         this.robot = hardwareMap;
 
-        this.leftWheel = robot.dcMotor.get("left wheel");
-        this.rightWheel = robot.dcMotor.get("right wheel");
+        this.ods1 = hardwareMap.opticalDistanceSensor.get("ods1");
+        this.ods2 = hardwareMap.opticalDistanceSensor.get("ods2");
 
-        this.leftLaunch = robot.dcMotor.get("left launch");
-        this.rightLaunch = robot.dcMotor.get("right launch");
+        this.colorSensor = hardwareMap.colorSensor.get("cs");
 
-        leftLaunch.setPower(0.0);
-        rightLaunch.setPower(0.0);
-
-        leftWheel.setPower(0.0);
-        rightWheel.setPower(0.0);
-
-        leftLaunch.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightLaunch.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-        leftWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightWheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        this.ods1.enableLed(true);
+        this.ods2.enableLed(true);
+        this.colorSensor.enableLed(true);
     }
 
     @Override
@@ -56,20 +48,16 @@ public class TestHardware implements Hardware {
         return robot;
     }
 
-    public DcMotor getLeftWheel() {
-        return leftWheel;
+    public OpticalDistanceSensor getOds1() {
+        return ods1;
     }
 
-    public DcMotor getRightWheel() {
-        return rightWheel;
+    public OpticalDistanceSensor getOds2() {
+        return ods2;
     }
 
-    public DcMotor getLeftLaunch() {
-        return leftLaunch;
-    }
-
-    public DcMotor getRightLaunch() {
-        return rightLaunch;
+    public ColorSensor getColorSensor() {
+        return colorSensor;
     }
 
 }

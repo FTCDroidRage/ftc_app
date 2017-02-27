@@ -47,11 +47,7 @@ import com.qualcomm.robotcore.hardware.LightSensor;
  *
  * This is an example LinearOpMode that shows how to use
  * a legacy (NXT-compatible) Light Sensor.
-<<<<<<< HEAD
  * It assumes that the light sensor is configured with a name of "light sensor".
-=======
- * It assumes that the light sensor is configured with a name of "sensor_light".
->>>>>>> upstream/master
  *
  * You can use the X button on gamepad1 to turn Toggle the LED on and off.
  *
@@ -62,63 +58,52 @@ import com.qualcomm.robotcore.hardware.LightSensor;
 @Disabled
 public class SensorLEGOLight extends LinearOpMode {
 
-  LightSensor lightSensor;  // Hardware Device Object
+    LightSensor lightSensor;  // Hardware Device Object
 
-  @Override
-<<<<<<< HEAD
-  public void runOpMode() throws InterruptedException {
-=======
-  public void runOpMode() {
->>>>>>> upstream/master
+    @Override
+    public void runOpMode() throws InterruptedException {
 
-    // bPrevState and bCurrState represent the previous and current state of the button.
-    boolean bPrevState = false;
-    boolean bCurrState = false;
+        // bPrevState and bCurrState represent the previous and current state of the button.
+        boolean bPrevState = false;
+        boolean bCurrState = false;
 
-    // bLedOn represents the state of the LED.
-    boolean bLedOn = true;
+        // bLedOn represents the state of the LED.
+        boolean bLedOn = true;
 
-    // get a reference to our Light Sensor object.
-<<<<<<< HEAD
-    lightSensor = hardwareMap.lightSensor.get("light sensor");
-=======
-    lightSensor = hardwareMap.lightSensor.get("sensor_light");
->>>>>>> upstream/master
+        // get a reference to our Light Sensor object.
+        lightSensor = hardwareMap.lightSensor.get("light sensor");
 
-    // Set the LED state in the beginning.
-    lightSensor.enableLed(bLedOn);
-
-    // wait for the start button to be pressed.
-    waitForStart();
-
-    // while the op mode is active, loop and read the light levels.
-    // Note we use opModeIsActive() as our loop condition because it is an interruptible method.
-    while (opModeIsActive()) {
-
-      // check the status of the x button .
-      bCurrState = gamepad1.x;
-
-      // check for button state transitions.
-      if ((bCurrState == true) && (bCurrState != bPrevState))  {
-
-        // button is transitioning to a pressed state.  Toggle LED
-        bLedOn = !bLedOn;
+        // Set the LED state in the beginning.
         lightSensor.enableLed(bLedOn);
-      }
 
-      // update previous state variable.
-      bPrevState = bCurrState;
+        // wait for the start button to be pressed.
+        waitForStart();
 
-      // send the info back to driver station using telemetry function.
-      telemetry.addData("LED", bLedOn ? "On" : "Off");
-      telemetry.addData("Raw", lightSensor.getRawLightDetected());
-      telemetry.addData("Normal", lightSensor.getLightDetected());
+        // while the op mode is active, loop and read the light levels.
+        // Note we use opModeIsActive() as our loop condition because it is an interruptible method.
+        while (opModeIsActive()) {
 
-      telemetry.update();
-<<<<<<< HEAD
-      idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
-=======
->>>>>>> upstream/master
+            // check the status of the x button .
+            bCurrState = gamepad1.x;
+
+            // check for button state transitions.
+            if ((bCurrState == true) && (bCurrState != bPrevState)) {
+
+                // button is transitioning to a pressed state.  Toggle LED
+                bLedOn = !bLedOn;
+                lightSensor.enableLed(bLedOn);
+            }
+
+            // update previous state variable.
+            bPrevState = bCurrState;
+
+            // send the info back to driver station using telemetry function.
+            telemetry.addData("LED", bLedOn ? "On" : "Off");
+            telemetry.addData("Raw", lightSensor.getRawLightDetected());
+            telemetry.addData("Normal", lightSensor.getLightDetected());
+
+            telemetry.update();
+            idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
+        }
     }
-  }
 }

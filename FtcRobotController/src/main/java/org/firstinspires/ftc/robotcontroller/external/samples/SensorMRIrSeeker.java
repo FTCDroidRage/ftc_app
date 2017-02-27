@@ -43,11 +43,7 @@ import com.qualcomm.robotcore.hardware.IrSeekerSensor;
  * the Modern Robotics ITR Seeker
  *
  * The op mode assumes that the IR Seeker
-<<<<<<< HEAD
  * is configured with a name of "ir seeker".
-=======
- * is configured with a name of "sensor_ir".
->>>>>>> upstream/master
  *
  * Set the switch on the Modern Robotics IR beacon to 1200 at 180.  <br>
  * Turn on the IR beacon.
@@ -60,45 +56,31 @@ import com.qualcomm.robotcore.hardware.IrSeekerSensor;
 @Disabled
 public class SensorMRIrSeeker extends LinearOpMode {
 
-  @Override
-<<<<<<< HEAD
-  public void runOpMode() throws InterruptedException {
-=======
-  public void runOpMode() {
->>>>>>> upstream/master
+    @Override
+    public void runOpMode() throws InterruptedException {
 
-    IrSeekerSensor irSeeker;    // Hardware Device Object
+        IrSeekerSensor irSeeker;    // Hardware Device Object
 
-    // get a reference to our GyroSensor object.
-<<<<<<< HEAD
-    irSeeker = hardwareMap.irSeekerSensor.get("seeker");
-=======
-    irSeeker = hardwareMap.irSeekerSensor.get("sensor_ir");
->>>>>>> upstream/master
+        // get a reference to our GyroSensor object.
+        irSeeker = hardwareMap.irSeekerSensor.get("seeker");
 
-    // wait for the start button to be pressed.
-    waitForStart();
+        // wait for the start button to be pressed.
+        waitForStart();
 
-    while (opModeIsActive())  {
+        while (opModeIsActive()) {
 
-      // Ensure we have a IR signal
-      if (irSeeker.signalDetected())
-      {
-        // Display angle and strength
-        telemetry.addData("Angle",    irSeeker.getAngle());
-        telemetry.addData("Strength", irSeeker.getStrength());
-      }
-      else
-      {
-        // Display loss of signal
-        telemetry.addData("Seeker", "Signal Lost");
-      }
+            // Ensure we have a IR signal
+            if (irSeeker.signalDetected()) {
+                // Display angle and strength
+                telemetry.addData("Angle", irSeeker.getAngle());
+                telemetry.addData("Strength", irSeeker.getStrength());
+            } else {
+                // Display loss of signal
+                telemetry.addData("Seeker", "Signal Lost");
+            }
 
-      telemetry.update();
-<<<<<<< HEAD
-      idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
-=======
->>>>>>> upstream/master
+            telemetry.update();
+            idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
+        }
     }
-  }
 }

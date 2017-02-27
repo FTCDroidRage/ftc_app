@@ -41,45 +41,37 @@ import com.qualcomm.robotcore.hardware.LightSensor;
  * This file illustrates the concept of driving up to a line and then stopping.
  * It uses the common Pushbot hardware class to define the drive on the robot.
  * The code is structured as a LinearOpMode
- *
+ * <p>
  * The code shows using two different light sensors:
-<<<<<<< HEAD
- *   The Primary sensor shown in this code is a legacy NXT Light sensor (called "light sensor")
-=======
- *   The Primary sensor shown in this code is a legacy NXT Light sensor (called "sensor_light")
->>>>>>> upstream/master
- *   Alternative "commented out" code uses a MR Optical Distance Sensor (called "sensor_ods")
- *   instead of the LEGO sensor.  Chose to use one sensor or the other.
- *
- *   Setting the correct WHITE_THRESHOLD value is key to stopping correctly.
- *   This should be set half way between the light and dark values.
- *   These values can be read on the screen once the OpMode has been INIT, but before it is STARTED.
- *   Move the senso on asnd off the white line and not the min and max readings.
- *   Edit this code to make WHITE_THRESHOLD half way between the min and max.
- *
+ * The Primary sensor shown in this code is a legacy NXT Light sensor (called "light sensor")
+ * Alternative "commented out" code uses a MR Optical Distance Sensor (called "sensor_ods")
+ * instead of the LEGO sensor.  Chose to use one sensor or the other.
+ * <p>
+ * Setting the correct WHITE_THRESHOLD value is key to stopping correctly.
+ * This should be set half way between the light and dark values.
+ * These values can be read on the screen once the OpMode has been INIT, but before it is STARTED.
+ * Move the senso on asnd off the white line and not the min and max readings.
+ * Edit this code to make WHITE_THRESHOLD half way between the min and max.
+ * <p>
  * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Pushbot: Auto Drive To Line", group="Pushbot")
+@Autonomous(name = "Pushbot: Auto Drive To Line", group = "Pushbot")
 @Disabled
 public class PushbotAutoDriveToLine_Linear extends LinearOpMode {
 
     /* Declare OpMode members. */
-    HardwarePushbot         robot   = new HardwarePushbot();   // Use a Pushbot's hardware
-                                                               // could also use HardwarePushbotMatrix class.
-    LightSensor             lightSensor;      // Primary LEGO Light sensor,
+    HardwarePushbot robot = new HardwarePushbot();   // Use a Pushbot's hardware
+    // could also use HardwarePushbotMatrix class.
+    LightSensor lightSensor;      // Primary LEGO Light sensor,
     // OpticalDistanceSensor   lightSensor;   // Alternative MR ODS sensor
 
-    static final double     WHITE_THRESHOLD = 0.2;  // spans between 0.1 - 0.5 from dark to light
-    static final double     APPROACH_SPEED  = 0.5;
+    static final double WHITE_THRESHOLD = 0.2;  // spans between 0.1 - 0.5 from dark to light
+    static final double APPROACH_SPEED = 0.5;
 
     @Override
-<<<<<<< HEAD
     public void runOpMode() throws InterruptedException {
-=======
-    public void runOpMode() {
->>>>>>> upstream/master
 
         /* Initialize the drive system variables.
          * The init() method of the hardware class does all the work here
@@ -91,11 +83,7 @@ public class PushbotAutoDriveToLine_Linear extends LinearOpMode {
         // robot.rightMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // get a reference to our Light Sensor object.
-<<<<<<< HEAD
         lightSensor = hardwareMap.lightSensor.get("light sensor");                // Primary LEGO Light Sensor
-=======
-        lightSensor = hardwareMap.lightSensor.get("sensor_light");                // Primary LEGO Light Sensor
->>>>>>> upstream/master
         //  lightSensor = hardwareMap.opticalDistanceSensor.get("sensor_ods");  // Alternative MR ODS sensor.
 
         // turn on LED of light sensor.
@@ -106,12 +94,7 @@ public class PushbotAutoDriveToLine_Linear extends LinearOpMode {
         telemetry.update();
 
         // Wait for the game to start (driver presses PLAY)
-<<<<<<< HEAD
         while (!isStarted()) {
-=======
-        // Abort this loop is started or stopped.
-        while (!(isStarted() || isStopRequested())) {
->>>>>>> upstream/master
 
             // Display the light level while we are waiting to start
             telemetry.addData("Light Level", lightSensor.getLightDetected());
@@ -125,14 +108,10 @@ public class PushbotAutoDriveToLine_Linear extends LinearOpMode {
 
         // run until the white line is seen OR the driver presses STOP;
         while (opModeIsActive() && (lightSensor.getLightDetected() < WHITE_THRESHOLD)) {
-
             // Display the light level while we are looking for the line
-            telemetry.addData("Light Level",  lightSensor.getLightDetected());
+            telemetry.addData("Light Level", lightSensor.getLightDetected());
             telemetry.update();
-<<<<<<< HEAD
             idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
-=======
->>>>>>> upstream/master
         }
 
         // Stop all motors

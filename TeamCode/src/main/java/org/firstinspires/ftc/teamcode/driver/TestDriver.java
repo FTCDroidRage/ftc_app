@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.hardware.TestHardware;
 
-// @TeleOp(name="POC: 10863 Driver", group="Linear Opmode")
+@TeleOp(name="Sensor Testing", group="Linear Opmode")
 public class TestDriver extends LinearOpMode {
 
     private TestHardware robot = new TestHardware();
@@ -21,22 +21,27 @@ public class TestDriver extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-            double left = Range.clip(gamepad1.left_stick_y, -1, 1);
-            double right = Range.clip(-gamepad1.right_stick_y, -1, 1);
-
-            robot.getLeftWheel().setPower(left);
-            robot.getRightWheel().setPower(right);
-
-            if (gamepad1.left_bumper) {
-                robot.getLeftLaunch().setPower(1.0);
-                robot.getRightLaunch().setPower(-1.0);
-            } else if (gamepad1.right_bumper) {
-                robot.getLeftLaunch().setPower(-1.0);
-                robot.getRightLaunch().setPower(1.0);
+            if (robot.getOds1().getLightDetected() > 0.6) {
+                telemetry.addData("ODS 1:", "White Tape Detected");
             } else {
-                robot.getLeftLaunch().setPower(0.0);
-                robot.getRightLaunch().setPower(0.0);
+                telemetry.addData("ODS 1:", "No tape detected");
             }
+
+            if (robot.getOds2().getLightDetected() > 0.6) {
+                telemetry.addData("ODS 2:", "White Tape Detected");
+            } else {
+                telemetry.addData("ODS 2:", "No tape detected");
+            }
+
+            if (robot.getColorSensor().blue() > robot.getColorSensor().red()) {
+                telemetry.addData("Color Sensor:", "Blue Tape Detected");
+            }
+
+            if (robot.getColorSensor().blue() < robot.getColorSensor().red()) {
+                telemetry.addData("Color Sensor:", "Red Tape Detected");
+            }
+
+            telemetry.update();
         }
 
     }

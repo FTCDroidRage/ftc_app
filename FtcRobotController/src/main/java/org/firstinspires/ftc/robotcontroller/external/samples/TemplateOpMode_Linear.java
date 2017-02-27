@@ -44,33 +44,28 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * the autonomous or the teleop period of an FTC match. The names of OpModes appear on the menu
  * of the FTC Driver Station. When an selection is made from the menu, the corresponding OpMode
  * class is instantiated on the Robot Controller and executed.
- *
+ * <p>
  * This particular OpMode just executes a basic Tank Drive Teleop for a PushBot
  * It includes all the skeletal structure that all linear OpModes contain.
- *
+ * <p>
  * Use Android Studios to Copy this Class, and Paste it into your team's code folder with a new name.
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Template: Linear OpMode", group="Linear Opmode")  // @Autonomous(...) is the other common choice
+@TeleOp(name = "Template: Linear OpMode", group = "Linear Opmode")
+// @Autonomous(...) is the other common choice
 @Disabled
 public class TemplateOpMode_Linear extends LinearOpMode {
 
     /* Declare OpMode members. */
     private ElapsedTime runtime = new ElapsedTime();
-<<<<<<< HEAD
     // DcMotor leftMotor = null;
     // DcMotor rightMotor = null;
 
     @Override
     public void runOpMode() throws InterruptedException {
-=======
-    DcMotor leftMotor = null;
-    DcMotor rightMotor = null;
-
-    @Override
-    public void runOpMode() {
->>>>>>> upstream/master
+        DcMotor leftMotor = null;
+        DcMotor rightMotor = null;
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
@@ -78,13 +73,8 @@ public class TemplateOpMode_Linear extends LinearOpMode {
          * to 'get' must correspond to the names assigned during the robot configuration
          * step (using the FTC Robot Controller app on the phone).
          */
-<<<<<<< HEAD
         // leftMotor  = hardwareMap.dcMotor.get("left motor");
         // rightMotor = hardwareMap.dcMotor.get("right motor");
-=======
-        // leftMotor  = hardwareMap.dcMotor.get("left_drive");
-        // rightMotor = hardwareMap.dcMotor.get("right_drive");
->>>>>>> upstream/master
 
         // eg: Set the drive motor directions:
         // "Reverse" the motor that runs backwards when connected directly to the battery
@@ -103,11 +93,8 @@ public class TemplateOpMode_Linear extends LinearOpMode {
             // eg: Run wheels in tank mode (note: The joystick goes negative when pushed forwards)
             // leftMotor.setPower(-gamepad1.left_stick_y);
             // rightMotor.setPower(-gamepad1.right_stick_y);
-<<<<<<< HEAD
 
             idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
-=======
->>>>>>> upstream/master
         }
     }
 }

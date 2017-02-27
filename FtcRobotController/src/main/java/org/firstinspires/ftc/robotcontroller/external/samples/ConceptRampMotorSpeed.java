@@ -37,19 +37,11 @@ public class ConceptRampMotorSpeed extends LinearOpMode {
 
 
     @Override
-<<<<<<< HEAD
     public void runOpMode() throws InterruptedException {
 
         // Connect to motor (Assume standard left wheel)
         // Change the text in quotes to match any motor name on your robot.
         motor = hardwareMap.dcMotor.get("left motor");
-=======
-    public void runOpMode() {
-
-        // Connect to motor (Assume standard left wheel)
-        // Change the text in quotes to match any motor name on your robot.
-        motor = hardwareMap.dcMotor.get("left_drive");
->>>>>>> upstream/master
 
         // Wait for the start button
         telemetry.addData(">", "Press Start to run Motors." );
