@@ -96,11 +96,7 @@ public class PushbotAutoDriveByGyro_Linear extends LinearOpMode {
 
 
     @Override
-<<<<<<< HEAD
     public void runOpMode() throws InterruptedException {
-=======
-    public void runOpMode() {
->>>>>>> upstream/master
 
         /*
          * Initialize the standard drive system variables.
@@ -120,13 +116,8 @@ public class PushbotAutoDriveByGyro_Linear extends LinearOpMode {
         gyro.calibrate();
 
         // make sure the gyro is calibrated before continuing
-<<<<<<< HEAD
         while (gyro.isCalibrating())  {
             Thread.sleep(50);
-=======
-        while (!isStopRequested() && gyro.isCalibrating())  {
-            sleep(50);
->>>>>>> upstream/master
             idle();
         }
 
@@ -176,11 +167,7 @@ public class PushbotAutoDriveByGyro_Linear extends LinearOpMode {
     */
     public void gyroDrive ( double speed,
                             double distance,
-<<<<<<< HEAD
                             double angle) throws InterruptedException {
-=======
-                            double angle) {
->>>>>>> upstream/master
 
         int     newLeftTarget;
         int     newRightTarget;
@@ -244,12 +231,9 @@ public class PushbotAutoDriveByGyro_Linear extends LinearOpMode {
                                                              robot.rightMotor.getCurrentPosition());
                 telemetry.addData("Speed",   "%5.2f:%5.2f",  leftSpeed, rightSpeed);
                 telemetry.update();
-<<<<<<< HEAD
 
                 // Allow time for other processes to run.
                 idle();
-=======
->>>>>>> upstream/master
             }
 
             // Stop all motion;
@@ -277,19 +261,12 @@ public class PushbotAutoDriveByGyro_Linear extends LinearOpMode {
      */
     public void gyroTurn (  double speed, double angle)
                               throws InterruptedException {
-=======
-     */
-    public void gyroTurn (  double speed, double angle) {
->>>>>>> upstream/master
 
         // keep looping while we are still active, and not on heading.
         while (opModeIsActive() && !onHeading(speed, angle, P_TURN_COEFF)) {
             // Update telemetry & Allow time for other processes to run.
             telemetry.update();
-<<<<<<< HEAD
             idle();
-=======
->>>>>>> upstream/master
         }
     }
 
@@ -307,10 +284,6 @@ public class PushbotAutoDriveByGyro_Linear extends LinearOpMode {
      */
     public void gyroHold( double speed, double angle, double holdTime)
                             throws InterruptedException {
-=======
-     */
-    public void gyroHold( double speed, double angle, double holdTime) {
->>>>>>> upstream/master
 
         ElapsedTime holdTimer = new ElapsedTime();
 
@@ -320,10 +293,7 @@ public class PushbotAutoDriveByGyro_Linear extends LinearOpMode {
             // Update telemetry & Allow time for other processes to run.
             onHeading(speed, angle, P_TURN_COEFF);
             telemetry.update();
-<<<<<<< HEAD
             idle();
-=======
->>>>>>> upstream/master
         }
 
         // Stop all motion;

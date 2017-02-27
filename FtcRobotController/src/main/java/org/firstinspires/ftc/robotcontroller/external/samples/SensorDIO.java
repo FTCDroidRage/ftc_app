@@ -66,7 +66,7 @@ final int BLUE_LED_CHANNEL = 0;
 final int RED_LED_CHANNEL = 1;
 
   @Override
-  public void runOpMode() {
+  public void runOpMode() throws InterruptedException {
 
     boolean               inputPin;             // Input State
     boolean               outputPin;            // Output State

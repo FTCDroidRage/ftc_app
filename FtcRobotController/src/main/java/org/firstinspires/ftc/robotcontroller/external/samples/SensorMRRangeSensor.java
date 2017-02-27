@@ -60,17 +60,10 @@ public class SensorMRRangeSensor extends LinearOpMode {
 
     ModernRoboticsI2cRangeSensor rangeSensor;
 
-<<<<<<< HEAD
     @Override public void runOpMode() throws InterruptedException {
 
         // get a reference to our compass
         rangeSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "range sensor");
-=======
-    @Override public void runOpMode() {
-
-        // get a reference to our compass
-        rangeSensor = hardwareMap.get(ModernRoboticsI2cRangeSensor.class, "sensor_range");
->>>>>>> upstream/master
 
         // wait for the start button to be pressed
         waitForStart();
@@ -81,10 +74,7 @@ public class SensorMRRangeSensor extends LinearOpMode {
             telemetry.addData("cm optical", "%.2f cm", rangeSensor.cmOptical());
             telemetry.addData("cm", "%.2f cm", rangeSensor.getDistance(DistanceUnit.CM));
             telemetry.update();
-<<<<<<< HEAD
             idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
-=======
->>>>>>> upstream/master
         }
     }
 }

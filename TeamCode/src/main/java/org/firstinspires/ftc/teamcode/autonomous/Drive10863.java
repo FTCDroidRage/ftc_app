@@ -22,15 +22,13 @@ public class Drive10863 extends LinearOpMode {
 
         double forwardSpeed = 1.0;
 
-        robot.getFrontWheelLeft().setPower(forwardSpeed);
-        robot.getFrontWheelRight().setPower(forwardSpeed);
+        while (opModeIsActive() && (runtime.seconds() < 10.0) && (runtime.seconds() < 13.0)) {
+            robot.getFrontWheelLeft().setPower(forwardSpeed);
+            robot.getFrontWheelRight().setPower(-forwardSpeed);
 
-        robot.getBackWheelLeft().setPower(forwardSpeed);
-        robot.getBackWheelRight().setPower(forwardSpeed);
+            robot.getBackWheelLeft().setPower(forwardSpeed);
+            robot.getBackWheelRight().setPower(-forwardSpeed);
 
-        runtime.reset();
-
-        while (opModeIsActive() && (runtime.seconds() < 3.0)) {
             telemetry.addData("Path", "Leg 1: %2.5f S Elapsed", runtime.seconds());
             telemetry.update();
             idle();

@@ -82,12 +82,7 @@ public class PushbotAutoDriveByEncoder_Linear extends LinearOpMode {
     static final double     TURN_SPEED              = 0.5;
 
     @Override
-<<<<<<< HEAD
     public void runOpMode() throws InterruptedException {
-=======
-    public void runOpMode() {
->>>>>>> upstream/master
-
         /*
          * Initialize the drive system variables.
          * The init() method of the hardware class does all the work here
@@ -138,11 +133,7 @@ public class PushbotAutoDriveByEncoder_Linear extends LinearOpMode {
      */
     public void encoderDrive(double speed,
                              double leftInches, double rightInches,
-<<<<<<< HEAD
                              double timeoutS) throws InterruptedException {
-=======
-                             double timeoutS) {
->>>>>>> upstream/master
         int newLeftTarget;
         int newRightTarget;
 
@@ -175,12 +166,9 @@ public class PushbotAutoDriveByEncoder_Linear extends LinearOpMode {
                                             robot.leftMotor.getCurrentPosition(),
                                             robot.rightMotor.getCurrentPosition());
                 telemetry.update();
-<<<<<<< HEAD
 
                 // Allow time for other processes to run.
                 idle();
-=======
->>>>>>> upstream/master
             }
 
             // Stop all motion;

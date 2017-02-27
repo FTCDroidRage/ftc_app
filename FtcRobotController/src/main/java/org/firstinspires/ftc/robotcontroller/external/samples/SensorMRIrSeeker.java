@@ -61,20 +61,12 @@ import com.qualcomm.robotcore.hardware.IrSeekerSensor;
 public class SensorMRIrSeeker extends LinearOpMode {
 
   @Override
-<<<<<<< HEAD
   public void runOpMode() throws InterruptedException {
-=======
-  public void runOpMode() {
->>>>>>> upstream/master
 
     IrSeekerSensor irSeeker;    // Hardware Device Object
 
     // get a reference to our GyroSensor object.
-<<<<<<< HEAD
     irSeeker = hardwareMap.irSeekerSensor.get("seeker");
-=======
-    irSeeker = hardwareMap.irSeekerSensor.get("sensor_ir");
->>>>>>> upstream/master
 
     // wait for the start button to be pressed.
     waitForStart();
@@ -95,10 +87,7 @@ public class SensorMRIrSeeker extends LinearOpMode {
       }
 
       telemetry.update();
-<<<<<<< HEAD
       idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
-=======
->>>>>>> upstream/master
     }
   }
 }

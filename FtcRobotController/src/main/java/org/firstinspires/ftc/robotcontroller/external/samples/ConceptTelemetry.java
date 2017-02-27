@@ -52,12 +52,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
  */
 @Autonomous(name = "Concept: Telemetry", group = "Concept")
 @Disabled
-<<<<<<< HEAD
-public class ConceptTelemetry extends LinearOpMode
-    {
-=======
-public class ConceptTelemetry extends LinearOpMode  {
->>>>>>> upstream/master
+public class ConceptTelemetry extends LinearOpMode {
     /** keeps track of the line of the poem which is to be emitted next */
     int poemLine = 0;
 
@@ -87,16 +82,9 @@ public class ConceptTelemetry extends LinearOpMode  {
         "The teacher did reply.",
         "",
         ""
-<<<<<<< HEAD
-        };
-
-    @Override public void runOpMode() throws InterruptedException {
-=======
     };
 
-    @Override public void runOpMode() {
->>>>>>> upstream/master
-
+    @Override public void runOpMode() throws InterruptedException {
         /* we keep track of how long it's been since the OpMode was started, just
          * to have some interesting data to show */
         ElapsedTime opmodeRunTime = new ElapsedTime();
@@ -117,11 +105,8 @@ public class ConceptTelemetry extends LinearOpMode  {
             telemetry.addData("time", "%.1f seconds", opmodeRunTime.seconds());
             telemetry.update();
             idle();
-<<<<<<< HEAD
             }
-=======
         }
->>>>>>> upstream/master
 
         // Ok, we've been given the ok to go
 
@@ -134,89 +119,4 @@ public class ConceptTelemetry extends LinearOpMode  {
          *
          * @see Telemetry#getMsTransmissionInterval()
          */
-        telemetry.addData("voltage", "%.1f volts", new Func<Double>() {
-            @Override public Double value() {
-                return getBatteryVoltage();
-<<<<<<< HEAD
-                }
-=======
-            }
->>>>>>> upstream/master
-            });
-
-        // Reset to keep some timing stats for the post-'start' part of the opmode
-        opmodeRunTime.reset();
-        int loopCount = 1;
-
-        // Go go gadget robot!
-        while (opModeIsActive()) {
-
-            // Emit poetry if it's been a while
-            if (poemElapsed.seconds() > sPoemInterval) {
-                emitPoemLine();
-<<<<<<< HEAD
-                }
-=======
-            }
->>>>>>> upstream/master
-
-            // As an illustration, show some loop timing information
-            telemetry.addData("loop count", loopCount);
-            telemetry.addData("ms/loop", "%.3f ms", opmodeRunTime.milliseconds() / loopCount);
-
-            // Show joystick information as some other illustrative data
-            telemetry.addLine("left joystick | ")
-                    .addData("x", gamepad1.left_stick_x)
-                    .addData("y", gamepad1.left_stick_y);
-            telemetry.addLine("right joystick | ")
-                    .addData("x", gamepad1.right_stick_x)
-                    .addData("y", gamepad1.right_stick_y);
-
-            /**
-             * Transmit the telemetry to the driver station, subject to throttling.
-             * @see Telemetry#getMsTransmissionInterval()
-             */
-            telemetry.update();
-
-            /** Update loop info and play nice with the rest of the {@link Thread}s in the system */
-            loopCount++;
-<<<<<<< HEAD
-            idle();
-            }
-        }
-=======
-        }
-    }
->>>>>>> upstream/master
-
-    // emits a line of poetry to the telemetry log
-    void emitPoemLine() {
-        telemetry.log().add(poem[poemLine]);
-        poemLine = (poemLine+1) % poem.length;
-        poemElapsed.reset();
-<<<<<<< HEAD
-        }
-=======
-    }
->>>>>>> upstream/master
-
-    // Computes the current battery voltage
-    double getBatteryVoltage() {
-        double result = Double.POSITIVE_INFINITY;
-        for (VoltageSensor sensor : hardwareMap.voltageSensor) {
-            double voltage = sensor.getVoltage();
-            if (voltage > 0) {
-                result = Math.min(result, voltage);
-<<<<<<< HEAD
-                }
-            }
-        return result;
-        }
-    }
-=======
-            }
-        }
-        return result;
-    }
 }
->>>>>>> upstream/master

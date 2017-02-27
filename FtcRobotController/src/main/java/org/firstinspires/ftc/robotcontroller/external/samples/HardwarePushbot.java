@@ -84,26 +84,12 @@ public class HardwarePushbot
      * @throws InterruptedException
      */
     public void waitForTick(long periodMs) throws InterruptedException {
-=======
-     */
-    public void waitForTick(long periodMs) {
->>>>>>> upstream/master
 
         long  remaining = periodMs - (long)period.milliseconds();
 
         // sleep for the remaining portion of the regular cycle period.
-<<<<<<< HEAD
         if (remaining > 0)
             Thread.sleep(remaining);
-=======
-        if (remaining > 0) {
-            try {
-                Thread.sleep(remaining);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        }
->>>>>>> upstream/master
 
         // Reset the cycle clock for the next pass.
         period.reset();

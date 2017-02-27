@@ -64,11 +64,7 @@ public class SensorHTColor extends LinearOpMode {
 
 
   @Override
-<<<<<<< HEAD
   public void runOpMode() throws InterruptedException {
-=======
-  public void runOpMode() {
->>>>>>> upstream/master
 
     // hsvValues is an array that will hold the hue, saturation, and value information.
     float hsvValues[] = {0F,0F,0F};
@@ -88,11 +84,7 @@ public class SensorHTColor extends LinearOpMode {
     boolean bLedOn = true;
 
     // get a reference to our ColorSensor object.
-<<<<<<< HEAD
     colorSensor = hardwareMap.colorSensor.get("color sensor");
-=======
-    colorSensor = hardwareMap.colorSensor.get("sensor_color");
->>>>>>> upstream/master
 
     // turn the LED on in the beginning, just so user will know that the sensor is active.
     colorSensor.enableLed(bLedOn);
@@ -140,10 +132,7 @@ public class SensorHTColor extends LinearOpMode {
       });
 
       telemetry.update();
-<<<<<<< HEAD
       idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
-=======
->>>>>>> upstream/master
     }
   }
 }

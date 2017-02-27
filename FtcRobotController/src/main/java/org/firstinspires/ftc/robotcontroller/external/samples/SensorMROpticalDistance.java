@@ -55,17 +55,13 @@ public class SensorMROpticalDistance extends LinearOpMode {
   OpticalDistanceSensor odsSensor;  // Hardware Device Object
 
   @Override
-<<<<<<< HEAD
   public void runOpMode() throws InterruptedException {
 
     // get a reference to our Light Sensor object.
     odsSensor = hardwareMap.opticalDistanceSensor.get("ods");
-=======
-  public void runOpMode() {
 
     // get a reference to our Light Sensor object.
     odsSensor = hardwareMap.opticalDistanceSensor.get("sensor_ods");
->>>>>>> upstream/master
 
     // wait for the start button to be pressed.
     waitForStart();
@@ -79,10 +75,7 @@ public class SensorMROpticalDistance extends LinearOpMode {
       telemetry.addData("Normal", odsSensor.getLightDetected());
 
       telemetry.update();
-<<<<<<< HEAD
       idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
-=======
->>>>>>> upstream/master
     }
   }
 }

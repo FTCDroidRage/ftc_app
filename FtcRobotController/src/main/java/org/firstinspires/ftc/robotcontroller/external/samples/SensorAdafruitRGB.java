@@ -87,11 +87,7 @@ public class SensorAdafruitRGB extends LinearOpMode {
   static final int LED_CHANNEL = 5;
 
   @Override
-<<<<<<< HEAD
   public void runOpMode() throws InterruptedException {
-=======
-  public void runOpMode() {
->>>>>>> upstream/master
 
     // hsvValues is an array that will hold the hue, saturation, and value information.
     float hsvValues[] = {0F,0F,0F};
@@ -119,12 +115,7 @@ public class SensorAdafruitRGB extends LinearOpMode {
     cdim.setDigitalChannelMode(LED_CHANNEL, DigitalChannelController.Mode.OUTPUT);
 
     // get a reference to our ColorSensor object.
-<<<<<<< HEAD
     sensorRGB = hardwareMap.colorSensor.get("color");
-=======
-    sensorRGB = hardwareMap.colorSensor.get("sensor_color");
->>>>>>> upstream/master
-
     // turn the LED on in the beginning, just so user will know that the sensor is active.
     cdim.setDigitalChannelState(LED_CHANNEL, bLedOn);
 
@@ -170,10 +161,7 @@ public class SensorAdafruitRGB extends LinearOpMode {
       });
 
       telemetry.update();
-<<<<<<< HEAD
       idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
-=======
->>>>>>> upstream/master
     }
   }
 }

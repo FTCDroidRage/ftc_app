@@ -56,17 +56,11 @@ public class SensorLEGOTouch extends LinearOpMode {
   TouchSensor touchSensor;  // Hardware Device Object
 
   @Override
-<<<<<<< HEAD
   public void runOpMode() throws InterruptedException {
 
     // get a reference to our Light Sensor object.
     touchSensor = hardwareMap.touchSensor.get("touch sensor");
-=======
-  public void runOpMode() {
 
-    // get a reference to our Light Sensor object.
-    touchSensor = hardwareMap.touchSensor.get("sensor_touch");
->>>>>>> upstream/master
     int counter = 0;
 
     // wait for the start button to be pressed.
@@ -74,11 +68,7 @@ public class SensorLEGOTouch extends LinearOpMode {
 
     // while the op mode is active, loop and read the light levels.
     // Note we use opModeIsActive() as our loop condition because it is an interruptible method.
-<<<<<<< HEAD
-    while (true) {
-=======
     while (opModeIsActive()) {
->>>>>>> upstream/master
 
       // send the info back to driver station using telemetry function.
       if (touchSensor.isPressed())
@@ -87,10 +77,7 @@ public class SensorLEGOTouch extends LinearOpMode {
         telemetry.addData("Touch", "Is Not Pressed");
 
       telemetry.update();
-<<<<<<< HEAD
       idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
-=======
->>>>>>> upstream/master
     }
   }
 }

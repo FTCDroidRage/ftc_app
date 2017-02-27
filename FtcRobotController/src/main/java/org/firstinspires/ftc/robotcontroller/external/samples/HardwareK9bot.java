@@ -56,14 +56,10 @@ public class HardwareK9bot
         // save reference to HW Map
         hwMap = ahwMap;
 
-        // Define and Initialize Motors
-<<<<<<< HEAD
         leftMotor   = hwMap.dcMotor.get("left motor");
         rightMotor  = hwMap.dcMotor.get("right motor");
-=======
         leftMotor   = hwMap.dcMotor.get("left_drive");
         rightMotor  = hwMap.dcMotor.get("right_drive");
->>>>>>> upstream/master
         leftMotor.setDirection(DcMotor.Direction.REVERSE);
 
         // Set all motors to zero power
@@ -93,26 +89,12 @@ public class HardwareK9bot
      * @throws InterruptedException
      */
     public void waitForTick(long periodMs)  throws InterruptedException {
-=======
-     */
-    public void waitForTick(long periodMs) {
->>>>>>> upstream/master
 
         long  remaining = periodMs - (long)period.milliseconds();
 
         // sleep for the remaining portion of the regular cycle period.
-<<<<<<< HEAD
         if (remaining > 0)
             Thread.sleep(remaining);
-=======
-        if (remaining > 0) {
-            try {
-                Thread.sleep(remaining);
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
-        }
->>>>>>> upstream/master
 
         // Reset the cycle clock for the next pass.
         period.reset();
