@@ -20,9 +20,6 @@ public class TestDriver extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-
-            telemetry.addData("normal Value:", robot.getOds1().getLightDetected() );
-
             if (robot.getOds1().getLightDetected() > 0.6) {
                 telemetry.addData("ODS 1:", "White Tape Detected");
             } else {
@@ -35,13 +32,9 @@ public class TestDriver extends LinearOpMode {
                 telemetry.addData("ODS 2:", "No tape detected");
             }
 
-            if (robot.getColorSensor().blue() > robot.getColorSensor().red()) {
-                telemetry.addData("Color Sensor:", "Blue Tape Detected");
-            }
+            telemetry.addData("Red:", robot.getColorSensor().red());
 
-            if (robot.getColorSensor().blue() < robot.getColorSensor().red()) {
-                telemetry.addData("Color Sensor:", "Red Tape Detected");
-            }
+            telemetry.addData("Blue:", robot.getColorSensor().blue());
 
             telemetry.update();
         }

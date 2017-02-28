@@ -31,10 +31,24 @@ public class FollowWhiteTape extends LinearOpMode {
                 robot.getBackWheelLeft().setPower(0.1);
                 robot.getBackWheelRight().setPower(0.1);
             } else if (robot.getOds2().getLightDetected() <= 0.6 && robot.getOds1().getLightDetected() <= 0.6) {
-                robot.getFrontWheelLeft().setPower(0.2);
-                robot.getFrontWheelRight().setPower(-0.2);
-                robot.getBackWheelLeft().setPower(0.2);
-                robot.getBackWheelRight().setPower(-0.2);
+                if (robot.getColorSensor().red() != 0 || robot.getColorSensor().blue() != 0) {
+                    if (robot.getColorSensor().red() > robot.getColorSensor().blue()) {
+                        robot.getFrontWheelLeft().setPower(0.1);
+                        robot.getFrontWheelRight().setPower(0.1);
+                        robot.getBackWheelLeft().setPower(0.1);
+                        robot.getBackWheelRight().setPower(0.1);
+                    } else {
+                        robot.getFrontWheelLeft().setPower(-0.1);
+                        robot.getFrontWheelRight().setPower(-0.1);
+                        robot.getBackWheelLeft().setPower(-0.1);
+                        robot.getBackWheelRight().setPower(-0.1);
+                    }
+                } else {
+                    robot.getFrontWheelLeft().setPower(0.2);
+                    robot.getFrontWheelRight().setPower(-0.2);
+                    robot.getBackWheelLeft().setPower(0.2);
+                    robot.getBackWheelRight().setPower(-0.2);
+                }
             }
         }
     }
